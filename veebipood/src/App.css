@@ -1,0 +1,16 @@
+.pilt {
+  height: 100px;
+}
+
+.pilt:hover {
+  opacity: 0.7;
+}
+
+.nupp {
+  border: 2px dotted red;
+}
+
+.nupp:hover {
+
+  font-weight: bold;
+}
