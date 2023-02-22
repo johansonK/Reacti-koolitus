@@ -1,0 +1,21 @@
+.Nupuke {background-color: green
+}
+.Nupuke { color: grey
+
+}
+.Nupuke:hover {height:100px
+
+}
+cursor:active {cursor: grab;
+}
+
+p {color:blue
+}
+
+p:hover {font-size: 24px;
+
+}
+.pilt {height: 400px; width: 600px;
+}
+
+.pilt{float: right;}
