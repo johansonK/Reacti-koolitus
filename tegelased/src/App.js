@@ -22,8 +22,8 @@ function App() {
 
       <Routes>
         <Route path="" element={ <Avaleht/> } />
-        <Route path="lisa-tegelane" element={ < LisaTegelane /> } />
-        <Route path="valitud-tegelased" element={ <ValitudTegelased/> } />
+        <Route path="lisategelane" element={ < LisaTegelane /> } />
+        <Route path="valitudtegelased" element={ <ValitudTegelased/> } />
       </Routes>
 
 

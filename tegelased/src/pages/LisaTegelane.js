@@ -4,8 +4,9 @@ import React from 'react'
 
 
 function LisaTegelane() {
-  const [sonum, uuendaSonum] = useState("Lisa uus tegelane!");
+  const [sonum, uuendaSonum] = useState("");
   const nimiRef = useRef();
+
   const lisaUusTegelane = () => {
     if (nimiRef.current.value === ""){
       uuendaSonum("Nimetuseta tegelast ei saa lisada!");
