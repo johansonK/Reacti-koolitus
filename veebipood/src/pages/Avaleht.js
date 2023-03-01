@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 function Avaleht() {
-  const[kogus, uuendaKogus] = useState(8); //number (number) - kui tehakse arvutusi: kogus, hinnad, summa
+  const[kogus, uuendaKogus] = useState(10); //number (number) - kui tehakse arvutusi: kogus, hinnad, summa
   const[sonum, uuendaSonum] = useState("Uuenda kogust!"); //sonaline (string) - koik ulejaanud: telefoninumbrid, isikukood, sonad, nimed
   const [laigitud, uuendaLaigitud] = useState(false); //kahendvaartus (boolean): sisselogitud, makstud, taisealine (eelnevad kolm on koigis keeltes samad)
 
@@ -30,10 +30,10 @@ function Avaleht() {
       <div>{sonum}</div>
       { kogus > 0 && <button onClick={nulli}>Nulli</button>}
       <button disabled={kogus === 0} onClick={vahenda}>-</button>
-      {kogus}
+      <span className={kogus >= 10 ? "kuldne" : undefined}>{kogus}</span>
       <button onClick={suurenda}>+</button>
     </div>
   )
 }
-
+// ? on nagu else (kui kogus on suurem voi vordne nulliga)
 export default Avaleht

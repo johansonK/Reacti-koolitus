@@ -1,4 +1,6 @@
 import React, { useRef, useState } from 'react'
+import { ToastContainer, toast } from 'react-toastify';
+
 
 //tumesinine - JS liigitusega: const, function
 //              vaartus, millel pole jutumarke: true, false, null, undefined
@@ -18,6 +20,9 @@ function Seaded() {
     const [keel, uuendaKeel] = useState(localStorage.getItem("keel"));
     const emailViide = useRef();
     const telefonViide = useRef();
+    const aadressRef = useRef();
+
+    //aadressRef voib olla mis iganes, ka lihtsalt uks taht, aga useRef peab olema useRef
 
     const muudaKeelEst = () => {
         uuendaKeel("est")
@@ -33,9 +38,34 @@ function Seaded() {
     }
     const salvestaEmail = () => {
         localStorage.setItem("email", emailViide.current.value);
+        if (emailViide.current.value.includes("@") === false) {
+            toast.error("Kontrolli e-mail!");
+        } else  {
+            toast.success("Email salvestatud!");
+        }
+        //koik, mida saab sonadega (string) teha https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/startsWith
     }
+
+    //js check if string is number only
+    //stackoverflow.com saab uurida vastuseid kusimustele
+    //regex (regular expression --- regulaaravaldis)
     const salvestaTelefon = () => {
         localStorage.setItem("telefon", telefonViide.current.value);
+        if (/^\d+$/.test(telefonViide.current.value)=== false) {
+            toast.error("Telefoninr ei koosne ainult numbritest");
+        } else {
+            toast.success("Telefon salvestatud")
+        }
+    }
+
+    const salvestaAadress = () => {
+        //salvestab ara brauseri malusse ainult minu arvutis samal veebilehel samas brauseris
+        localStorage.setItem("aadress", aadressRef.current.value);
+        if (aadressRef.current.value[0] === aadressRef.current.value[0].toLowerCase()) {
+            toast.error("Aadress kirjuta suure tahega");
+        } else {
+        toast.success("Aadress salvestatud!");
+        }
     }
 
 // voi ilma   const muudaKeelEst = () => {uuendaKeel("est"), siis on 
@@ -51,6 +81,10 @@ function Seaded() {
         <label>Telefoninumber</label>
         <input ref={telefonViide} type="text" />
         <button onClick={salvestaTelefon}>Sisesta</button>
+        <br />
+        <label>Aadress</label>
+        <input ref={aadressRef} type="text" />
+        <button onClick={salvestaAadress}>Sisesta</button>
         <br /><br />
         <button onClick={muudaKeelEst} >Eesti keelseks</button> 
         <button onClick={muudaKeelEng}>Inglise keelseks</button>
@@ -58,8 +92,12 @@ function Seaded() {
         { keel === "est" && <div>Leht on eesti keeles</div>}
         { keel === "eng" && <div>Page is in English</div>}
         { keel === "rus" && <div>Pycckij Rsok</div>}
+        <ToastContainer
+        position='bottom-right'
+        theme="dark"
+        />
     </div>
   )
 }
-
+// <ToastContainer/> voib paikneda kus iganes koodis
 export default Seaded
