@@ -1,5 +1,6 @@
 import { useState } from 'react';
 
+
 function LisaSulearvuteid() {
     const [message, setMessage] = useState("Lisa arvuti!")
     const [naitaNuppu, uuendaNaitaNuppu] = useState(true);
@@ -7,6 +8,7 @@ function LisaSulearvuteid() {
     function addProduct(){
         setMessage("Arvuti lisatud");
         uuendaNaitaNuppu(false);
+
 
     }
   return (
@@ -19,6 +21,7 @@ function LisaSulearvuteid() {
         <label >Maksumus</label> <br />
         <input type="number" /> <br />
         { naitaNuppu === true && <button onClick={() => addProduct()} >Sisesta</button>}
+      
     </div>
   )
 }
