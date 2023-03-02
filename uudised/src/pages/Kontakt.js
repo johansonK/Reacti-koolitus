@@ -12,17 +12,17 @@ const [naitaTelSakala, muudaNaitaTelSakala] = useState(false);
     <br />
     <div>Asume aadressidel: </div>
     <br />
-    <div onClick={() => muudaNaitaTelPuiestee(!naitaTelPuiestee)}>Puiestee 5</div>
+    <div className={naitaTelPuiestee === true ? "valitud" : undefined} onClick={() => muudaNaitaTelPuiestee(!naitaTelPuiestee)}>Puiestee 5</div>
     <div>Rapla</div>
-    {naitaTelPuiestee && <div>5782939</div>}
+    {naitaTelPuiestee && <div className="valitud">5782939</div>}
     <br />
-    <div onClick={() => muudaNaitaTelKase(!naitaTelKase)}>Kase 7</div>
+    <div className={naitaTelKase === true ? "valitud" : undefined}onClick={() => muudaNaitaTelKase(!naitaTelKase)}>Kase 7</div>
     <div>Keila</div>
-    {naitaTelKase && <div>5889990</div>}
+    {naitaTelKase && <div className="valitud">5889990</div>}
     <br />
-    <div onClick={() => muudaNaitaTelSakala(!naitaTelSakala)}>Sakala 5</div>
+    <div className={naitaTelSakala === true ? "valitud" : undefined}onClick={() => muudaNaitaTelSakala(!naitaTelSakala)}>Sakala 5</div>
     <div>Tori</div>
-    {naitaTelSakala && <div>58899111</div>}
+    {naitaTelSakala && <div className="valitud">58899111</div>}
     <br />
     <div>Kiirete probleemide puhul helistage 53535353</div>
     <br />
