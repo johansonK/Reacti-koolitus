@@ -37,15 +37,9 @@ function App() {
 
       { sisselogitud === "ei" &&  <button onClick={logiSisse}>Logi sisse</button>} <br />
       { sisselogitud === "jah" && <button onClick={logiValja}>Logi valja</button>} <br />
-
       
 
-      
-
-     
-      
-
-
+      <button className="nupuke">Vajuta siia!</button>
 
       <p className="Oluline jutt">
         <em> Oluline jutt</em> 

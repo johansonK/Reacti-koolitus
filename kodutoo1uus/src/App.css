@@ -1,12 +1,10 @@
-.Nupuke {background-color: green
+.nupuke {background-color: lightgreen
 }
-.Nupuke { color: grey
 
+.nupuke { color: grey
 }
-.Nupuke:hover {height:100px
 
-}
-cursor:active {cursor: grab;
+.nupuke:hover {height:100px
 }
 
 p {color:blue
@@ -15,7 +13,12 @@ p {color:blue
 p:hover {font-size: 24px;
 
 }
+
 .pilt {height: 400px; width: 600px;
 }
 
-.pilt{float: right;}
+.pilt{float: right;
+}
+
+.pilt:active { cursor : grab; 
+}
