@@ -20,5 +20,5 @@ p:hover {font-size: 24px;
 .pilt{float: right;
 }
 
-.pilt:active { cursor : grab; 
+.pilt:active { cursor : grabbing; 
 }
