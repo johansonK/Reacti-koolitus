@@ -5,6 +5,7 @@ import Avaleht from './pages/Avaleht';
 import Meist from './pages/Meist';
 import Kontakt from './pages/Kontakt';
 import Seaded from './pages/Seaded';
+import Books from './pages/Books';
 
 function App() {
   const [sisselogitud, muudaSisselogitud] = useState("ei");
@@ -64,12 +65,18 @@ function App() {
       <button className="seaded">Seaded</button>
       </Link>
 
+      <Link to="/books">
+      <button className="books">Books</button>
+      </Link>
+      <br /><br />
 
       <Routes>
         <Route path="" element={ <Avaleht/>}/>
         <Route path="kontakt" element={ <Kontakt/> }/>
         <Route path="meist" element={ <Meist/> }/>
         <Route path="seaded" element={ <Seaded/> }/>
+        <Route path="books" element={ <Books/> }/>
+
       </Routes>
 
     </div>
