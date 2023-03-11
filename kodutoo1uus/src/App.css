@@ -22,3 +22,16 @@ p:hover {font-size: 24px;
 
 .pilt:active { cursor : grabbing; 
 }
+
+.hele-leht {
+    background-color: azure;
+    height: 100%;
+    min-height: 100vh
+}
+
+.tume-leht {
+    background-color: black;
+    height: 100%;
+    min-height: 100vh;
+    color:aliceblue;
+}

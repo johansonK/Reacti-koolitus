@@ -6,6 +6,7 @@ import Meist from './pages/Meist';
 import Kontakt from './pages/Kontakt';
 import Seaded from './pages/Seaded';
 import Books from './pages/Books';
+import Numbrid from './pages/Numbrid';
 
 function App() {
   const [sisselogitud, muudaSisselogitud] = useState("ei");
@@ -26,8 +27,17 @@ function App() {
     muudaSonum("");
   }
 
+  const [hele, uuendaHele] = useState(true)
+
+  
   return (
-    <div className="App">
+  
+    <div className={hele === true ? "hele-leht" : "tume-leht"}>
+      <button onClick={() => uuendaHele(true)}>Hele</button>
+      <button onClick={() => uuendaHele(false)}>Tume</button>
+      {hele === true && localStorage.getItem("taustavarv")}
+      {hele === false && localStorage.getItem("taustavarv")}
+
       <div>{sonum}</div>
       {sisselogitud === "ei" && <div>
         <label>Kasutajanimi</label> <br />
@@ -68,6 +78,11 @@ function App() {
       <Link to="/books">
       <button className="books">Books</button>
       </Link>
+
+      <Link to="/numbrid">
+      <button className="numbrid">Numbrid</button>
+      </Link>
+
       <br /><br />
 
       <Routes>
@@ -76,6 +91,7 @@ function App() {
         <Route path="meist" element={ <Meist/> }/>
         <Route path="seaded" element={ <Seaded/> }/>
         <Route path="books" element={ <Books/> }/>
+        <Route path="numbrid" element={ <Numbrid/> }/>
 
       </Routes>
 

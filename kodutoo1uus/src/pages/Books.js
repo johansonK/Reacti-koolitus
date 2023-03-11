@@ -8,6 +8,25 @@ function Books() {
         uuendaRaamatud (["The Great Gatsby", "War and Peace", "Hamlet", "Moby Dick", "Harry Potter", "Alice in Wonderland"])
     }
 
+    const vaiksedTahed = () => {
+        const tulemus = raamatud.map(raamatud => raamatud.toLowerCase())
+        uuendaRaamatud(tulemus)
+    }
+
+    const suuredTahed = () => {
+        const tulemus = raamatud.map(raamatud => raamatud.toUpperCase())
+        uuendaRaamatud(tulemus)
+    }
+
+    const loppuPunkt = () => {
+        const tulemus = raamatud.map(raamatud => raamatud + ".")
+        uuendaRaamatud(tulemus)
+    }
+
+    const loppuHuumark = () => {
+        const tulemus = raamatud.map(raamatud => raamatud + "!")
+        uuendaRaamatud(tulemus)
+    }
 
     const sorteeriAZ = () => {
         raamatud.sort ()
@@ -25,7 +44,7 @@ function Books() {
     }
 
     const sorteeriSonaArv = () => {
-        raamatud.sort ()
+        raamatud.sort((a,b) => a.length >b.length )
         uuendaRaamatud (raamatud.slice()) //vaja muuta
     }
 
@@ -36,7 +55,7 @@ function Books() {
     }
 
     const filtreeriAnd = () => {
-        const tulemus = raamatud.filter (yksRaamat => yksRaamat.includes ("and")); //vaja muuta
+        const tulemus = raamatud.filter (yksRaamat => yksRaamat.includes (" and ")); 
         uuendaRaamatud(tulemus);
     
     }
@@ -52,16 +71,19 @@ function Books() {
         uuendaRaamatud(tulemus);
     
     }
+
     
   return (
     <div>
 
     <button onClick={paneOrginaali}>Pane orginaali</button>
     <br />
+
     <button onClick={vaiksedTahed}>Koik tahed vaiksed</button>
     <button onClick={suuredTahed}>Koik tahed suured</button>
     <button onClick={loppuPunkt}>Lisa loppu punkt</button>
     <button onClick={loppuHuumark}>Lisa loppu "!"</button>
+
     <br />
     <button onClick={sorteeriAZ}>Sorteeri A-Z</button>
     <button onClick={sorteeriZA}>Sorteeri Z-A</button>
@@ -73,11 +95,13 @@ function Books() {
     <button onClick={filtreeriRohkem10Tah}>Filtreeri valja rohkem kui 10tahelised pealkirjad</button>
     <button onClick={filtreeriVahem7Tah}>Filtreeri valja vahem kui 7tahelised pealkirjad</button>
 
-    {raamatud.map(yksRaamatud => <div>{yksRaamatud}</div> )}
+    {raamatud.map(yksRaamat => <div>{yksRaamat}</div> )}
+    
 
 
     </div>
   )
 }
+ 
 
 export default Books
