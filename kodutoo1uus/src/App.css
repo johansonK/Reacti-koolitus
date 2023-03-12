@@ -23,13 +23,13 @@ p:hover {font-size: 24px;
 .pilt:active { cursor : grabbing; 
 }
 
-.hele-leht {
+.hele {
     background-color: azure;
     height: 100%;
     min-height: 100vh
 }
 
-.tume-leht {
+.tume {
     background-color: black;
     height: 100%;
     min-height: 100vh;

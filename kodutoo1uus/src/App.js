@@ -27,16 +27,33 @@ function App() {
     muudaSonum("");
   }
 
-  const [hele, uuendaHele] = useState(true)
+  //const [hele, uuendaHele] = useState(true)
+
+
+  const [teineKujundus, muudaTeineKujundus] = useState(localStorage.getItem("tausta_teema"));
+
+  const teineTumeLeht = () => {
+    localStorage.setItem("tausta_teema", "tume");
+    muudaTeineKujundus("tume");
+  }
+
+  const teineHeleLeht = () => {
+    localStorage.setItem("tausta_teema", "hele");
+    muudaTeineKujundus("hele")
+  }
+
 
   
   return (
   
-    <div className={hele === true ? "hele-leht" : "tume-leht"}>
-      <button onClick={() => uuendaHele(true)}>Hele</button>
-      <button onClick={() => uuendaHele(false)}>Tume</button>
-      {hele === true && localStorage.getItem("taustavarv")}
-      {hele === false && localStorage.getItem("taustavarv")}
+    <div className={teineKujundus === "tume" ? "tume" : "hele"}>
+
+      <button onClick={teineTumeLeht}>Tume leht</button>
+      <button onClick={teineHeleLeht}>Hele leht</button>
+      {teineKujundus === "tume" && <div>TUME</div>}
+      {teineKujundus === "hele" && <div>HELE</div>}
+
+      
 
       <div>{sonum}</div>
       {sisselogitud === "ei" && <div>
@@ -98,5 +115,13 @@ function App() {
     </div>
   );
 }
+
+//const [hele, uuendaHele] = useState(true)
+//<div className={hele === true ? "hele-leht" : "tume-leht"}>
+//<button onClick={() => uuendaHele(true)}>Hele</button>
+//<button onClick={() => uuendaHele(false)}>Tume</button>
+//{teineKujundus === true && localStorage.getItem("tausta_teema")}
+//{teineKujundus === false && localStorage.getItem("tausta_teema")}
+
 
 export default App;
