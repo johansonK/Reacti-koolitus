@@ -1,11 +1,12 @@
 import React, {useState} from 'react'
+import poedFailist from "../data/poed.json";
 
 
 function Poed() {
-    const [poed, uuendaPoed] = useState(["Ulemiste","Viimsi","Rocca al Mare","Magistrali","Vesse","Kristiine","Jarveotsa" ])
+    const [poed, uuendaPoed] = useState(poedFailist)
 
     const paneOriginaali = () => {
-        uuendaPoed(["Ulemiste","Viimsi","Rocca al Mare","Magistrali","Vesse","Kristiine","Jarveotsa" ]);
+        uuendaPoed(poedFailist);
     }
 
     const sorteeriAZ = () => {
@@ -57,6 +58,21 @@ function Poed() {
         uuendaPoed(tulemus); 
     }
 
+    const muudaSuurteksTahtedeks =() => {
+        const tulemus = poed.map(yksPood => yksPood.toUpperCase());
+        uuendaPoed(tulemus);
+    }
+
+    const muudaKoikITahedOTaheks = () => {
+        const tulemus = poed.map(yksPood => yksPood.replaceAll("i", "o"))
+        uuendaPoed(tulemus)
+    }
+
+    const muudaKoigileKriipsudEtte = () => {
+        const tulemus = poed.map(yksPood => "--" + yksPood)
+        uuendaPoed(tulemus)
+    }
+
   return (
 
     <div>
@@ -73,8 +89,12 @@ function Poed() {
         <button onClick={filtreeri9Tahelised}>Filtreeri tapselt 9tahelised</button>
         <button onClick={filtreeriIsSisaldavad}>Filtreeri sisaldab luhendit 'is'</button>
         <button onClick={filtreeriKolmasTahtI}>Filtreeri kolmas taht 'i'</button>
+        <br /><br />
+        <button onClick={muudaSuurteksTahtedeks}>Muudasuurteks tahtedeks</button>
+        <button onClick={muudaKoikITahedOTaheks}>Koik i muutud o</button>
+        <button onClick={muudaKoigileKriipsudEtte}>Kriipsud ette</button>
 
-        {poed.map(yksPood => <div>{yksPood}</div> )}
+        {poed.map((yksPood, jarjekorraNumber) => <div key={jarjekorraNumber}>{yksPood}</div> )}
 
         <div>------------------</div>
         <div>Ulemiste</div>
