@@ -1,8 +1,8 @@
-import React, { useState, useRef } from 'react'
+import React, { useState } from 'react'
 
 function Suvalist() {
     const [suvad, muudaSuvad] = useState(['shoes', 'shirts', 'socks', 'sweaters', 'pigs', 'goats', 'sheep', 'spray', 'limit', 'elite', 'exuberant', 'destruction', 'present', 'March', 'Jan', 'Feb', 'Dec'])
-    const suvadRef = useRef();
+    
 
     const kustuta = (jrkNr) => {
         suvad.splice(jrkNr, 1);
@@ -10,7 +10,7 @@ function Suvalist() {
       }
 
     const lisaUusSona = () => {
-        suvad.push(suvadRef.current.value);
+        suvad.push("chickens", "cats", "dogs");
         muudaSuvad(suvad.slice());
     }
 
@@ -29,9 +29,8 @@ function Suvalist() {
 
             <div>Nimekirjas on: {suvad.length} tk</div>
 
-            <label></label>
-            <input ref={suvadRef} />
-            <button onClick={() => lisaUusSona()}>Lisa uus suvaline sona</button>
+           
+            <button onClick={() => lisaUusSona()}>Lisa chickens, cats, dogs</button>
             <button onClick={sorteeriAZ}>Sordi tahestikujarjekorras</button>
             <button onClick={filtreeriRoh4}>Jata alles rohkem kui 4tahelised</button>
 
