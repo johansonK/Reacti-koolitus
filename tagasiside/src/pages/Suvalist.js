@@ -24,16 +24,23 @@ function Suvalist() {
         muudaSuvad(tulemus);
     }
 
+    const tuhjenda = () => {
+        suvad.pop();
+        muudaSuvad(suvad.slice());
+    }
+
     return (
         <div>
-
-            <div>Nimekirjas on: {suvad.length} tk</div>
+            <br />
+            <div>Nimekirjas on: {suvad.length} tk</div> 
+            <br />
 
            
             <button onClick={() => lisaUusSona()}>Lisa chickens, cats, dogs</button>
+            <button onClick={tuhjenda}>Tuhjenda</button>
             <button onClick={sorteeriAZ}>Sordi tahestikujarjekorras</button>
             <button onClick={filtreeriRoh4}>Jata alles rohkem kui 4tahelised</button>
-
+            <br /><br />
             {suvad.map((yksSona, index) => 
             <div key={index}>
                 {yksSona}
