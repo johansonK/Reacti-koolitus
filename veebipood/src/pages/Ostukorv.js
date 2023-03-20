@@ -6,30 +6,43 @@ function Ostukorv() { // index ehk jarjekorranumber 0     1       2          3  
   const [ostukorv, uuendaOstukorv] = useState(ostukorvFailist)
   //const months = [];   seda ei naidata HTMLis
 
+  const tyhjenda = () => {
+    // ostukorv.splice(0)
+     //uuendaOstukorv(ostukorv.slice())
+     ostukorvFailist = [];
+     uuendaOstukorv(ostukorvFailist.slice())
+   }
+
 
   // const abil voi noole ees luuakse uus muutuja
   const lisa = (uusToode) => {
-    ostukorv.push(uusToode);            //.push lisab toodet
-    uuendaOstukorv(ostukorv.slice()); //HTML uuenduseks .slice
+    ostukorvFailist.push(uusToode);            //.push lisab toodet
+    uuendaOstukorv(ostukorvFailist.slice()); //HTML uuenduseks .slice
   }
   const kustuta = (jarjekorraNumber) => {
-    ostukorv.splice(jarjekorraNumber,1);                //.splice on kustutamiseks, sulgude sees: mitmendat koma mitu tukki kustutan, paremal pool mitu t[kki korraga kustutan]
-    uuendaOstukorv(ostukorv.slice());
+    ostukorvFailist.splice(jarjekorraNumber,1);                //.splice on kustutamiseks, sulgude sees: mitmendat koma mitu tukki kustutan, paremal pool mitu t[kki korraga kustutan]
+    uuendaOstukorv(ostukorvFailist.slice());
   }
 // jrkNr tootab key-na alati ja ei tekita anomaaliaid
 
+
+ 
   return (
     <div>
+      {ostukorv.length > 0 && <button onClick={tyhjenda}>Tuhjenda</button>}
+      {ostukorv.length > 0 && <div>Ostukorvis kokku {ostukorv.length} eset </div>}
       {ostukorv.map((yksToode, jrkNr) =>
         <div key={jrkNr}>
           {yksToode} 
           <button onClick={() => lisa(yksToode)}>+</button> 
           <button onClick={() => kustuta(jrkNr)}>x</button>
-        </div>)}
+    </div>)}
 
+    {ostukorv.length === 0 &&
+      <div> 
       Ostukorv on tuhi.
       <Link to="/">Tooteid lisama</Link>
-
+    </div>}
 
     </div>
   )

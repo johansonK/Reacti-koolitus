@@ -29,6 +29,8 @@ function Suvalist() {
         muudaSuvad(suvad.slice());
     }
 
+    
+
     return (
         <div>
             <br />

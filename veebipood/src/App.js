@@ -91,8 +91,8 @@ function App() { //window.location.href --->javascripti sissekirjutatud funktsio
         <Route path="halda" element={ <HaldaToode/> } />
         <Route path="tooted" element={ <Tooted/> } />
 
-        <Route path="yksik" element={ <YksikToode/> } />
-        <Route path="muuda" element={ <MuudaToode/> } />
+        <Route path="yksik/:jrkNr" element={ <YksikToode/> } />
+        <Route path="muuda/:index" element={ <MuudaToode/> } />
         
       </Routes>
     </div>

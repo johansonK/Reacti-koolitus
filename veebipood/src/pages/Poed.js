@@ -73,9 +73,21 @@ function Poed() {
         uuendaPoed(tulemus)
     }
 
+    const arvutaTahedKokku = () => {
+        let sum = 0;        // let abil on voimalik anda muutujuale parast tema loomist uus vaartus
+        //sum = sum + poed[0].length;
+        //sum = sum + poed[1].length;
+        //          "Kristiine" => 8 =0+8
+        //           "Viimsi" =>  14  =8+6
+        //            "Rocca al Mare" =>   27  =14+13
+        poed.forEach(yksPood => sum = sum + yksPood.length );
+        return sum;
+    }
+
   return (
 
     <div>
+        <div>Tahteda arv kokku : {arvutaTahedKokku()}</div>
         <button onClick={paneOriginaali}>Tagasi orginaali</button>
         <br /><br />
         <button onClick={sorteeriAZ}>Sorteeri A-Z</button>

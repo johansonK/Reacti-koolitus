@@ -16,6 +16,26 @@ import { ToastContainer, toast } from 'react-toastify';
 //      visual studio code-s on sisseehitatud, et samat varvi sulg paneb kinni samaat varvi sulu
 //tumeroheline - kommentaar
 
+//  () -> funktsiooni, mis k2ivitab, kollase s6na taga enamasti
+//        if sees kontrollime, kas t6ene v6i v22r
+//  {} -> JavaScriptis koodiblokki      const nimi = () => {}  if () {} else {}
+//          HTMLs JavaScripti ehk dynaamikat
+//          {} = useParams  <- mitu tk pole m22ratletud
+//  [] -> array ehk v22rtuste kogum
+//          [keel, muudaKeel] = useState <- peab olema t2pselt 2tk
+//  =   -> annan v22rtust
+//  ==  -> kontrollin kas vasak ja parem pool on vordne ilma tyybi kontrollita(react annab warningu)
+//  === -> kontrollin kas vasak ja parem pool on vordne 
+// && -> kui vasakul on t6de siis parem ilmub
+//  || -> kui vasakul on tyhjus, siis v6etakse kasutusele parem
+//  ;   -> rea l6pu t2his
+//  ?   -> tavaliselt className sees    KUI ON T6DE ? Võetakse see" : "Ei ole tõde, võetakse see"
+//        lühendatud if else , ternary operator
+//  >=  suurem, vaiksem
+//  <   v2iksem
+//  .   saab v2lja kutsuda omadusi (  .length        .getItem   )
+
+
 function Seaded() {
     const [keel, uuendaKeel] = useState(localStorage.getItem("keel"));
     const emailViide = useRef();
