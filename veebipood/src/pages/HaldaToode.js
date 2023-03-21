@@ -18,8 +18,10 @@ function HaldaToode() {
       {tooted.map((toode, jarjekorraNr) => 
             <div key={jarjekorraNr}>
                 {toode}
-                <button onClick={() => kustuta(jarjekorraNr)}>Kustuta</button> 
-                <Link to={"/muuda/" + jarjekorraNr}><button>Muuda</button> </Link>
+                  <button onClick={() => kustuta(jarjekorraNr)}>Kustuta</button> 
+                <Link to={"/muuda/" + jarjekorraNr}>
+                  <button>Muuda</button> 
+                </Link>
             </div>)}
     </div>
   )

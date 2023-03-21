@@ -4,6 +4,7 @@ import {Route, Routes, Link} from "react-router-dom";
 import Avaleht from './pages/Avaleht';
 import LisaJook from './pages/LisaJook';
 import HaldaJooke from './pages/HaldaJooke';
+import Jook from './pages/Jook';
 
 function App() {
   return (
@@ -21,10 +22,13 @@ function App() {
     <button className="halda">Halda jooke</button>
     </Link>
 
+
     <Routes>
       <Route path="" element={<Avaleht/>}/>
       <Route path="lisa" element={<LisaJook/>}/>
       <Route path="halda" element={<HaldaJooke/>}/>
+
+      <Route path="jook/:number" element={<Jook/>} />
     </Routes>
 
     </div>
