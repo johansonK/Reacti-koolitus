@@ -1,9 +1,12 @@
 [
-    "Ulemiste",
-    "Viimsi",
-    "Rocca al Mare",
-    "Magistrali",
-    "Vesse",
-    "Kristiine",
-    "Jarveotsa"
+    {"nimi": "Ulemiste", "tel": "57223355"},
+    {"nimi": "Viimsi", "tel": "57223325"},
+    {"nimi": "Rocca al Mare", "tel": "57123355"},
+    {"nimi": "Magistrali", "tel": "52223355"},
+    {"nimi": "Vesse", "tel": "57223305"},
+    {"nimi": "Kristiine", "tel": "57223755"},
+    {"nimi": "Jarveotsa", "tel": "57223365"}
+    
 ]
+
+

@@ -15,6 +15,9 @@ function YksikToode() {
         //5. Neile ei saa dunaamikat teha, ehk vahepeal hook tekib, vahepeal ei teki, ta peab alati tekkima
 const {jrkNr} = useParams();   // app.js: path="yksik/:jrkNr"
 const leitud = tootedFailist[jrkNr]; // votab uhe toote failist, kusjuures esimene toode on nr 0, mitte 1
+
+// const cars =["..", "...", ".."]
+//let x =cars[1]
 //const leitud = ["Nobe", "Tesla", "BMW"][2] ----> leitud sisse tuleb bmw
 
 //app.js url, tooted.js url ja yksiktoode const {jrkNr} seotud omavahel
@@ -22,10 +25,11 @@ const leitud = tootedFailist[jrkNr]; // votab uhe toote failist, kusjuures esime
 
   return (
     <div>
+      <img src={leitud.pilt} alt="" />
       <div>Klikitud toote jarjekorranumber: {jrkNr} </div>
-      <div>Klikitud toote nimi:{leitud}</div>
+      <div>Klikitud toote nimi:{leitud.nimi}</div>
       <div>Tema kirjeldus...</div>
-      <div>Koostisosad:..  ..  ..</div>
+      <div>Hind: {leitud.hind} </div>
     </div>
   )
 }

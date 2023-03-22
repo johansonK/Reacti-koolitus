@@ -10,66 +10,76 @@ function Poed() {
     }
 
     const sorteeriAZ = () => {
-        poed.sort(); //tavaline .sort() teeb alati A-Z
+        //tavaline .sort() teeb alati A-Z, aga kui tegemist on stringidegs
+        poed.sort((a,b) => a.nimi.localeCompare(b.nimi)); 
         uuendaPoed(poed.slice()); // slice() loige - loikab ara parinevuskoha
     }
 
     const sorteeriZA = () => {
-        poed.sort((a,b) => b.localeCompare(a));
+        // Ülemiste.localeCompare(Viimsi)
+         //  {"nimi": "Ülemiste", "tel": "51312321"}.localeCompare({"nimi": "Viimsi", "tel": "51312322"})
+         // nimi ja tel on key'd
+        poed.sort((a,b) => b.nimi.localeCompare(a.nimi));
         uuendaPoed(poed.slice());
     }
 
     const sorteeriPikkusKasv = () => {
-        poed.sort((a,b) => a.length - b.length);
+        poed.sort((a,b) => a.nimi.length - b.nimi.length);
         uuendaPoed(poed.slice());
+        //objekti votmete arv 
+        //object.keys(poed[0]).length
     }
 
+// objekt on see, mis tuleb p2rast "nimi" ja "tel", k6ige rohkem kasutusel veebipoodides
+
     const sorteeriPikkusKah = () => {
-        poed.sort((a,b) => b.length - a.length); // kui vastupidi, vahetan a ja b asukoha ara
+        poed.sort((a,b) => b.nimi.length - a.nimi.length); // kui vastupidi, vahetan a ja b asukoha ara
         uuendaPoed(poed.slice());
     }
 
     const sorteeriAZKolmas = () => {
-        poed.sort((a,b) => a[2].localeCompare(b[2])); // jarjakorra nr algab nullist 012345
+        poed.sort((a,b) => a.nimi[2].localeCompare(b.nimi[2])); // jarjakorra nr algab nullist 012345
         uuendaPoed(poed.slice());
     }
 
     const filtreeriEgaLoppevad = () => {
-        const tulemus = poed.filter(yksPood => yksPood.endsWith("e")) //vasakule poole noolt kuidas tahistan uhte elementi
+        const tulemus = poed.filter(yksPood => yksPood.nimi.endsWith("e")) //vasakule poole noolt kuidas tahistan uhte elementi
         uuendaPoed(tulemus);                           //paremale poole ,millisel tingimusel jatan ta alles
     }
     const filtreeriVah7Tahelised = () => {
-        const tulemus = poed.filter(yksPood => yksPood.length >= 7);
+        const tulemus = poed.filter(yksPood => yksPood.nimi.length >= 7);
         uuendaPoed(tulemus);  
     }
 
     const filtreeri9Tahelised = () => {
-        const tulemus = poed.filter(yksPood => yksPood.length === 9);
+        const tulemus = poed.filter(yksPood => yksPood.nimi.length === 9);
         uuendaPoed(tulemus); 
     }
 
     const filtreeriIsSisaldavad = () => {
-        const tulemus = poed.filter(yksPood => yksPood.includes("is"));
+        const tulemus = poed.filter(yksPood => yksPood.nimi.includes("is"));
         uuendaPoed(tulemus); 
     }
 
     const filtreeriKolmasTahtI = () => {
-        const tulemus = poed.filter(yksPood => yksPood[2] === "i");
+        const tulemus = poed.filter(yksPood => yksPood.nimi[2] === "i");
         uuendaPoed(tulemus); 
     }
 
     const muudaSuurteksTahtedeks =() => {
-        const tulemus = poed.map(yksPood => yksPood.toUpperCase());
+        //ulemiste => ulemiste className="toUpperCase"          ulemiste-->ULEMISTE
+        //   
+        const tulemus = poed.map(yksPood => {return{nimi: yksPood.nimi.toUpperCase(), tel: yksPood.tel}});
         uuendaPoed(tulemus);
     }
 
     const muudaKoikITahedOTaheks = () => {
-        const tulemus = poed.map(yksPood => yksPood.replaceAll("i", "o"))
+        const tulemus = poed.map(yksPood => {return{nimi: yksPood.nimi.replaceAll("i", "o"), tel: yksPood.tel}})
         uuendaPoed(tulemus)
     }
 
     const muudaKoigileKriipsudEtte = () => {
-        const tulemus = poed.map(yksPood => "--" + yksPood)
+        const tulemus = poed.map(yksPood => {return{nimi: "--" + yksPood.nimi, tel: yksPood.tel}})
         uuendaPoed(tulemus)
     }
 
@@ -80,10 +90,18 @@ function Poed() {
         //          "Kristiine" => 8 =0+8
         //           "Viimsi" =>  14  =8+6
         //            "Rocca al Mare" =>   27  =14+13
-        poed.forEach(yksPood => sum = sum + yksPood.length );
+        poed.forEach(yksPood => sum = sum + yksPood.nimi.length );
         return sum;
     }
 
+
+    const muudaKoigileSuunakood = () => {
+        const tulem = poed.map(yksPood => {return{nimi: yksPood.nimi, tel: "+372" + yksPood.tel}})
+        uuendaPoed(tulem)
+    }
+
+
+        // Kui andmed tabeli kujul excelis, siis saab ymber konvertida tableconvert.com/excel-to-json
   return (
 
     <div>
@@ -105,8 +123,9 @@ function Poed() {
         <button onClick={muudaSuurteksTahtedeks}>Muudasuurteks tahtedeks</button>
         <button onClick={muudaKoikITahedOTaheks}>Koik i muutud o</button>
         <button onClick={muudaKoigileKriipsudEtte}>Kriipsud ette</button>
+        <button onClick={muudaKoigileSuunakood}>Suunakood</button>
 
-        {poed.map((yksPood, jarjekorraNumber) => <div key={jarjekorraNumber}>{yksPood}</div> )}
+        {poed.map((yksPood, jarjekorraNumber) => <div key={jarjekorraNumber}>{yksPood.nimi}, tel: {yksPood.tel}</div> )}
 
         <div>------------------</div>
         <div>Ulemiste</div>

@@ -16,8 +16,10 @@ function HaldaToode() {
       
 
       {tooted.map((toode, jarjekorraNr) => 
-            <div key={jarjekorraNr}>
-                {toode}
+            <div key={jarjekorraNr} className={ toode.aktiivne === true ? "aktiivne" : "mitteaktiivne" }> 
+              <img className="pilt" src={toode.pilt} alt="" />
+                <div>{toode.nimi}</div>
+                <div>{toode.hind}</div>
                   <button onClick={() => kustuta(jarjekorraNr)}>Kustuta</button> 
                 <Link to={"/muuda/" + jarjekorraNr}>
                   <button>Muuda</button> 

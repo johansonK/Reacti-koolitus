@@ -1,5 +1,9 @@
 [
-    "Nobe",
-    "Tesla",
-    "BMW"
+    {"nimi": "Nobe", "hind": 45000, "pilt": "https://assets.whichcar.com.au/image/upload/s--hVn_xN33--/ar_2.304921968787515,c_fill,f_auto,q_auto:good/c_scale,w_768/v1/archive/whichcar/2018/06/01/-1/nobe-3-wheeler-other-side.jpg", "aktiivne": true },
+    {"nimi": "Tesla", "hind": 70000, "pilt": "https://upload.wikimedia.org/wikipedia/commons/2/20/Tesla_Model_S_%2828898945604%29.jpg", "aktiivne": true },
+    {"nimi": "BMW", "hind": 50000, "pilt": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/BMW_G11_IMG_2002.jpg/1280px-BMW_G11_IMG_2002.jpg", "aktiivne": true },
+    {"nimi": "Audi", "hind": 90000, "pilt": "https://upload.wikimedia.org/wikipedia/commons/6/6e/Audi_A4_2.0_TFSI_quattro.jpg" , "aktiivne": true },
+    {"nimi": "Nissan", "hind": 30000, "pilt": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Nissan_Ariya_Concept.jpg/2560px-Nissan_Ariya_Concept.jpg", "aktiivne": true },
+    {"nimi": "Bentley", "hind": 1200000, "pilt": "https://upload.wikimedia.org/wikipedia/commons/9/9e/2018_Bentley_Continental_GT_%2837965556312%29.jpg", "aktiivne": true }
+    
 ]

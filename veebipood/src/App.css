@@ -1,5 +1,6 @@
 .pilt {
   height: 100px;
+  width: 200px;
 }
 
 .pilt:hover {
@@ -42,4 +43,14 @@
   background-color: gold;
   height: 100%;
   min-height: 100vh;
+}
+
+.aktiivne {
+  background-color: rgb(213, 236, 213);
+  border: 1px solid green;
+}
+
+.mitteaktiivne {
+  background-color: rgb(245, 232, 232);
+  border: 1px solid red;
 }

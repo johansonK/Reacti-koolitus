@@ -25,6 +25,12 @@ function Ostukorv() { // index ehk jarjekorranumber 0     1       2          3  
   }
 // jrkNr tootab key-na alati ja ei tekita anomaaliaid
 
+  const arvutaKogusumma = () => {
+    let summa = 0;  ///let muutuv v22rtus
+    ostukorv.forEach(yksToode => summa = summa + yksToode.hind)
+    return summa;
+  }
+
 
  
   return (
@@ -33,19 +39,27 @@ function Ostukorv() { // index ehk jarjekorranumber 0     1       2          3  
       {ostukorv.length > 0 && <div>Ostukorvis kokku {ostukorv.length} eset </div>}
       {ostukorv.map((yksToode, jrkNr) =>
         <div key={jrkNr}>
-          {yksToode} 
+          <img className="pilt" src={yksToode.pilt} alt="" />
+          <div>{yksToode.nimi}</div>
+          <div>{yksToode.hind}</div>
           <button onClick={() => lisa(yksToode)}>+</button> 
           <button onClick={() => kustuta(jrkNr)}>x</button>
-    </div>)}
+        </div>)}
 
     {ostukorv.length === 0 &&
       <div> 
-      Ostukorv on tuhi.
-      <Link to="/">Tooteid lisama</Link>
-    </div>}
+        Ostukorv on tuhi.
+        <Link to="/">Tooteid lisama</Link>
+      </div>}
+        {ostukorv.length > 0 && 
+      <div className={ arvutaKogusumma () > 500000 ? "kuldne" : undefined}>
+        Kokku: {arvutaKogusumma()}  eurot 
+      </div> }
 
     </div>
   )
 }
 
+
+//kui {arvutaKogusumma()}, sulud lopus siis kutsub kohe funtsiooni valja
 export default Ostukorv
