@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import tootajadFailist from "..tootajad.json/"
+import tootajadFailist from "../tootajad.json";
 
 function Meist() {
 
@@ -13,7 +13,8 @@ function Meist() {
       <br />
       <div>Meie tootajad:</div>
       <br />
-      <div>Tiina Teha</div>
+
+      {/*<div>Tiina Teha</div>
       <div>Reporter</div>
       <button onClick={() => naitaKontakt('55577788')}>Vota uhendust</button>
       <br /> <br />
@@ -25,10 +26,15 @@ function Meist() {
       <div>Produtsent</div>
       <button onClick={() => naitaKontakt('54321654')}>Vota uhendust</button>
       <br /> <br />
-      {kontakt !== "" && <div>Tema kontakt: {kontakt}</div>}
+  {kontakt !== "" && <div>Tema kontakt: {kontakt}</div>}*/}
 
-      {tootajad.ma((yksTootaja, jrkNr) =>  
-      <div key={jrkNr}>{yksTootaja.nimi}, tel: {yksTootaja.tel}</div>)}
+      {tootajad.map(yksTootaja =>  
+      <div>
+        <div>{yksTootaja.Nimi}</div> <br />
+        <div>{yksTootaja.Ala}</div> <br />
+        <button onClick={() => naitaKontakt(yksTootaja.Telefon)}>Vota uhendust</button>
+        <br /><br />
+      </div>)}
 
     </div>
   )
