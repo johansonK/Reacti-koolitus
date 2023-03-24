@@ -11,7 +11,7 @@ const aktiivneViide = useRef()
 
 //function lisa2() {}
 
-const lisa = () => {
+const lisa = () => { 
   if (nimiViide.current.value === "") {
     uuendaSonum("Tuhja nimetusega ei saa toodet lisada!");
   } else {

@@ -28,7 +28,31 @@ const resources = {
       "add-product": "Lisa toode",
       "maintain-products": "Halda tooteid",
     }
-  }
+  },  
+  ru: {
+    translation: {
+      "cart": "Корзина",
+      "shops": "Наши магазины",
+      "contact": "Связаться c нами",
+      "admin": "B вид администратора",
+      "maintain-categories": "Поддерживать категории",
+      "maintain-shops": "Поддерживать магазины",
+      "add-product": "Добавить товар",
+      "maintain-products": "Поддерживать продукты",
+    }
+  },  
+  de: {
+    translation: {
+      "cart": "Warenkorb",
+      "shops": "Unsere Shops",
+      "contact": "Kontaktieren Sie uns",
+      "admin": "Zur Admin-Ansicht",
+      "maintain-categories": "Kategorien pflegen",
+      "maintain-shops": "Shops pflegen",
+      "add-product": "Produkt hinzufügen",
+      "maintain-products": "Produkte pflegen",
+    }
+  },
 };
 
 i18n

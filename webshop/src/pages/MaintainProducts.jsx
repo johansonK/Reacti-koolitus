@@ -6,8 +6,6 @@ function MaintainProducts() {
 
   const [products, setProducts] = useState(productsFromFile);
 
-//const remove = () => {kodus---kustutamine}
-
 
 const remove = (index) => {
   productsFromFile.splice(index, 1);

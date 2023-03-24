@@ -22,7 +22,7 @@ import EditProduct from './pages/EditProduct';
 function App() {
 
   //koju:
-  // addproduct--toote lisamine
+  // addproduct--toote lisamine 
   //maintainproduct//toote kustutamine
   //lisa 3 ja 4 keel veel
 
@@ -54,6 +54,10 @@ function App() {
           </Nav>
           <img className="lang" src="/english.png" onClick={() => changeLang("en")} alt="" />
           <img className="lang" src="/estonia.png" onClick={() => changeLang("ee")} alt="" />
+          <img className="lang" src="/russia.png" onClick={() => changeLang("ru")} alt="" />
+          <img className="lang" src="/german.png" onClick={() => changeLang("de")} alt="" />
+          
+
           
         </Container>
       </Navbar>
@@ -67,7 +71,7 @@ function App() {
         <Route path="admin" element={ <AdminHome /> } />
         <Route path="admin/add-product" element={ <AddProduct /> } />
         <Route path="admin/edit-product" element={ <EditProduct /> } />
-        <Route path="admin/maintain-products" element={ <MaintainProducts /> } />
+        <Route path="admin/maintain-product" element={ <MaintainProducts /> } />
         <Route path="admin/maintain-shops" element={ <MaintainShops /> } />
         <Route path="admin/maintain-categories" element={ <MaintainCategories /> } />
       </Routes>
