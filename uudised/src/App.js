@@ -1,5 +1,9 @@
-import './App.css';
 import {Route, Routes, Link} from 'react-router-dom'
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import { useTranslation } from 'react-i18next';
+import './App.css';
 import Avalehele from './pages/Avalehele';
 import Uudised from './pages/Uudised';
 import Kontakt from './pages/Kontakt';
@@ -9,21 +13,18 @@ function App() {
   return (
     <div>
 
-      <Link to="/">
-      <button className="avalehele">Avalehele</button>
-      </Link>
+      <Navbar bg="primary" variant="dark">
+        <Container>
+          <Navbar.Brand as={Link} to="/">Uudised</Navbar.Brand>
+          <Nav className="me-auto">
+            <Nav.Link as={Link} to="/">Avalehele</Nav.Link>
+            <Nav.Link as={Link} to="/uudised">Uudised</Nav.Link>
+            <Nav.Link as={Link} to="/kontakt">Kontakt</Nav.Link>
+            <Nav.Link as={Link} to="/meist">Meist</Nav.Link>
+          </Nav>
+        </Container>
+      </Navbar>
 
-      <Link to="/uudised">
-      <button className="Uudised">Uudised</button>
-      </Link>
-
-      <Link to="/kontakt">
-      <button className="kontakt">Kontakt</button>
-      </Link>
-
-      <Link to="/meist">
-      <button className="meist">Meist</button>
-      </Link>
 
 
       <Routes>
