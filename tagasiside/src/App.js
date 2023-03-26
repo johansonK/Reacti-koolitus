@@ -4,6 +4,7 @@ import {Routes, Route, Link} from "react-router-dom";
 import Tagasiside from './pages/Tagasiside';
 import TagasisideAndjad from './pages/TagasisideAndjad';
 import Suvalist from './pages/Suvalist';
+import Tegevused from './pages/Tegevused';
 
 
 function App() {
@@ -27,11 +28,16 @@ function App() {
         <button>Suvalised sonad</button>
       </Link>
 
+      <Link to="/tegevused">
+        <button>Tegevused</button>
+      </Link>
+
       <Routes>
         <Route path="" element={<div>Tere</div>}/>
         <Route path="tagasiside" element={< Tagasiside/>}/>
         <Route path="tagasisideandjad" element={< TagasisideAndjad/>}/>
         <Route path="suvalist" element={< Suvalist/>}/>
+        <Route path="tegevused" element={<Tegevused/>}/>
       </Routes>
     </div>
   );
