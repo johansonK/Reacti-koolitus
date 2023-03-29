@@ -1,5 +1,5 @@
 import React, {useRef} from 'react';
-import productsFromFile from "../data/products.json"
+import productsFromFile from "../../data/products.json"
 
 function AddProduct() {
 
@@ -13,9 +13,12 @@ function AddProduct() {
   const descriptionRef = useRef();
   const activeRef = useRef();
 
+
+//KODUS ID UNIKAALSUS
+
   const add = () => {
     productsFromFile.push({
-      "id": idRef.current.value,
+      "id": Number(idRef.current.value),
       "name": nameRef.current.value,
       "price": Number(priceRef.current.value),
       "image": imageRef.current.value,
@@ -24,6 +27,18 @@ function AddProduct() {
       "active": activeRef.current.checked}
     )
 
+    ///j2rgneb jutt, et p2rast toote lisamist v2lja tyhjeneks
+    idRef.current.value="";
+    nameRef.current.value="";
+    priceRef.current.value="";
+    imageRef.current.value="";
+    categoryRef.current.value="";
+    descriptionRef.current.value="";
+    activeRef.current.checked="";
+    //toast.success ("Toode edukalt lisatus")
+    
+
+
   }
 
   //lisamine
@@ -31,10 +46,10 @@ function AddProduct() {
   //tekib loppu juurde, refreshiga kaob ara
   return ( 
     <div>
-      <label>New product</label> <br />
-      <input ref={nameRef} type="text" /> <br />
       <label>New id</label> <br />
       <input ref={idRef} type="text" /> <br />
+      <label>New product</label> <br />
+      <input ref={nameRef} type="text" /> <br />      
       <label>New price</label> <br />
       <input ref={priceRef} type="number" /> <br />
       <label>New image</label> <br />

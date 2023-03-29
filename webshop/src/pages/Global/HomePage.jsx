@@ -1,21 +1,23 @@
 import React, {useState} from 'react'
-import productsFromFile from "../data/products.json";
+import productsFromFile from "../../data/products.json";
 
-
-function MaintainProducts() {
+function HomePage() {
 
   const [products, setProducts] = useState(productsFromFile);
 
+  const sortAZ = () => {
+    products.sort((a,b) => a.name.localeCompare(b.name));
+    setProducts(products.slice());
 
-const remove = (index) => {
-  productsFromFile.splice(index, 1);
-  setProducts(productsFromFile.slice())
-}
+  const sortZA = () => {
+    products.sort((a,b) => b.name.localeCompare(a.name))
+  }
+  }
 
   return (
     <div>
-       {products.map((element, index2) => 
-        <div key={index2}>
+      {products.map(element => 
+        <div>
           <img src={element.image} alt="" />
           <div>{element.id}</div>
           <div>{element.name}</div>
@@ -24,11 +26,10 @@ const remove = (index) => {
           <div>{element.category}</div>
           <div>{element.description}</div>
           <div>{element.active}</div>
-          <button onClick={() => remove(index2)}>Remove</button>
-          <button>Change</button>
+          <button>Lisa ostukorvi</button>
           </div>)}
     </div>
   )
 }
 
-export default MaintainProducts
+export default HomePage
