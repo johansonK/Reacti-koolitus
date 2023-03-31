@@ -45,7 +45,7 @@ function HomePage() {
       <button onClick={sortPriceDesc}>Sort by price high to low</button>
       {products.map((element,index) => 
         <div key={index}>
-          <Link to={"/single-product/" + index}>
+          <Link to={"global/single-product/" + index}>
           <img src={element.image} alt="" />
           <div>{element.id}</div>
           <div>{element.name}</div>
@@ -55,7 +55,7 @@ function HomePage() {
           <div>{element.description}</div>
           <div>{element.active}</div>
           </Link>
-          <button onClick={() => addProductToCart(element)}>Lisa ostukorvi</button>
+          <button onClick={() => addProductToCart(element)}>Add to cart</button>
           </div>)}
     </div>
   )
