@@ -51,7 +51,7 @@ function Tooted() {
                 <div>{toode.nimi}</div>
                 <div>{toode.hind}</div>
               </Link>
-              <button onClick={() => lisaOstukorvi(toode)}>Lisa ostukorvi</button>
+              <button onClick={() => lisaOstukorvi(toode)}>Lisa ostukorvi</button> 
           </div>)}
     </div>
   )

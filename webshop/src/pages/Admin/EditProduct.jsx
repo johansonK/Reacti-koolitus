@@ -10,7 +10,7 @@ function EditProduct() {
 //.find vs. .filter ---> kysivad,mis on tingimus
 //.find annab mulle 1, koige esimene
 //.filter annab koik, kellel tingimus vastab
-// const found = productsFromFilter.filter()[0]
+// const found = productsFromFile.filter()[0]
 //find on ilusam, kui filter, aga vahet pole
 //proovit66des pole alati olulin, et tapselt sama saak, vaid et pyyaks sarnast
                                     //  573893 === "573893" ei vordu nii
@@ -81,7 +81,7 @@ const index = productsFromFile.findIndex(element => element.id === Number(id))
     // }
 
 
-  return (
+  return ( 
     <div>
       {found !== undefined && <div>    
       {isUnique === false && <div>ID ei ole unikaalne!</div>}

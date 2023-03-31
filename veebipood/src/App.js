@@ -4,7 +4,7 @@ import {useState} from "react";
 import Avaleht from './pages/Avaleht';
 import Ostukorv from './pages/Ostukorv';
 import LisaToode from './pages/LisaToode';
-import Meist from './pages/Meist';
+import Meist from './pages/Meist'; 
 import Seaded from './pages/Seaded';
 import Poed from './pages/Poed';
 import HaldaToode from './pages/HaldaToode';

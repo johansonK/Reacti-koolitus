@@ -4,7 +4,7 @@ import tootedFailist from "../data/tooted.json";
 
 
 function YksikToode() {
-  //useState, useRef, useParams <--- hookid 
+  //useState, useRef, useParams < --- hookid 
   //(Reacti enda kirjutatud, koodiloik, mida on vaga lihtne kasutusele votta)
   //useSuperpower  reactState, reactRef, reactParams
   // 1. use algusega

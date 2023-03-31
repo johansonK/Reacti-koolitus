@@ -124,7 +124,7 @@ function Seaded() {
         <ToastContainer
         position='bottom-right'
         theme="dark"
-        />
+        /> 
     </div>
   )
 }

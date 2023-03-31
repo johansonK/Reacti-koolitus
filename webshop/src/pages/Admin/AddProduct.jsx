@@ -1,5 +1,7 @@
-import React, {useRef} from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import React, {useRef, useState} from 'react';
 import productsFromFile from "../../data/products.json"
+
 
 function AddProduct() {
 
@@ -12,9 +14,8 @@ function AddProduct() {
   const categoryRef = useRef();
   const descriptionRef = useRef();
   const activeRef = useRef();
-
-
-//KODUS ID UNIKAALSUS
+  const [isUnique, setUnique] = useState(true);
+  
 
   const add = () => {
     productsFromFile.push({
@@ -34,33 +35,47 @@ function AddProduct() {
     imageRef.current.value="";
     categoryRef.current.value="";
     descriptionRef.current.value="";
-    activeRef.current.checked="";
-    //toast.success ("Toode edukalt lisatus")
-    
-
+    activeRef.current.checked=false;
+    toast.success ("Toode edukalt lisatus");
 
   }
 
-  //lisamine
-  //koju label + inputid + funktsioonid + productsFromFail.pudh()
-  //tekib loppu juurde, refreshiga kaob ara
+  const checkIdUniqueness = () => {
+    
+    const product = productsFromFile.find(element => element.id === Number(idRef.current.value));
+    if (product === undefined){
+      setUnique(true);
+      //console.log("KELLELGI EI OLE OLEMAS")
+    } else{
+      setUnique(false);
+      toast.error("Id ei ole unikaalne")
+      //console.log("KELLELGI ON OLEMAS")
+    }
+  }
+
   return ( 
     <div>
+       
+      {isUnique === false && <div>"ID ei ole unikaalne!"</div> }  
       <label>New id</label> <br />
-      <input ref={idRef} type="text" /> <br />
+      <input ref={idRef} onChange={checkIdUniqueness}  type="number" /> <br />
       <label>New product</label> <br />
-      <input ref={nameRef} type="text" /> <br />      
+      <input ref={nameRef}   type="text" /> <br />      
       <label>New price</label> <br />
-      <input ref={priceRef} type="number" /> <br />
+      <input ref={priceRef}   type="number" /> <br />
       <label>New image</label> <br />
-      <input ref={imageRef} type="text" /> <br />
+      <input ref={imageRef}   type="text" /> <br />
       <label>New category</label> <br />
-      <input ref={categoryRef} type="text" /> <br />
+      <input ref={categoryRef}   type="text" /> <br />
       <label>Description</label> <br />
-      <input ref={descriptionRef}type="text" /> <br />
+      <input ref={descriptionRef}  type="text" /> <br />
       <label>Active</label> <br />
-      <input ref={activeRef} type="checkbox" /> <br />
-      <button onClick={add}>Add</button> <br />
+      <input ref={activeRef}  type="checkbox" /> <br />
+      <button disabled={isUnique === false} onClick={add}>Add</button> <br />
+      
+      <ToastContainer
+        position='bottom-right'
+        theme="dark"/>
 
     </div>
   )

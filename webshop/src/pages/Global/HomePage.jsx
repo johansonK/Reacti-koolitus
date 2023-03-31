@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import productsFromFile from "../../data/products.json";
+import {Link} from "react-router-dom";
 
 function HomePage() {
 
@@ -8,25 +9,53 @@ function HomePage() {
   const sortAZ = () => {
     products.sort((a,b) => a.name.localeCompare(b.name));
     setProducts(products.slice());
-
-  const sortZA = () => {
-    products.sort((a,b) => b.name.localeCompare(a.name))
   }
+
+    const sortZA = () => {
+    products.sort((a,b) => b.name.localeCompare(a.name));
+    setProducts(products.slice());
+  }
+  
+  const sortPriceAsc = () => {
+    products.sort((a,b) => a.price - b.price);
+    setProducts(products.slice());
+  }
+
+  const sortPriceDesc = () => {
+    products.sort((a,b) => b.price - a.price);
+    setProducts(products.slice());
+  }
+
+  const addProductToCart = (productClicked) => {
+    //cartFromFile.push(productClicked);
+
+    const cart = JSON.parse(localStorage.getItem("cart"))||[];
+    //    ||[] kasutatakse, kui midagi ei ole st on tyhi
+    //vana ostukorvi sisu enne juurde lisamist
+        // json.parse lisab jutum2rgid
+    cart.push(productClicked);
+    localStorage.setItem("cart", JSON.stringify(cart));
   }
 
   return (
     <div>
-      {products.map(element => 
-        <div>
+      <button onClick={sortAZ}>Sort A-Z</button>
+      <button onClick={sortZA}>Sort Z-A</button>
+      <button onClick={sortPriceAsc}>Sort by price low to high</button>
+      <button onClick={sortPriceDesc}>Sort by price high to low</button>
+      {products.map((element,index) => 
+        <div key={index}>
+          <Link to={"/single-product/" + index}>
           <img src={element.image} alt="" />
           <div>{element.id}</div>
           <div>{element.name}</div>
           <div>{element.price}</div>
           <div>{element.image}</div>
-          <div>{element.category}</div>
+          <div>{element.category}</div> 
           <div>{element.description}</div>
           <div>{element.active}</div>
-          <button>Lisa ostukorvi</button>
+          </Link>
+          <button onClick={() => addProductToCart(element)}>Lisa ostukorvi</button>
           </div>)}
     </div>
   )

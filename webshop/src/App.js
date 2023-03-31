@@ -1,7 +1,6 @@
 
 
 import {Routes, Route, Link} from "react-router-dom";
-import { ToastContainer, toast } from 'react-toastify';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -10,7 +9,7 @@ import './App.css';
 import HomePage from "./pages/Global/HomePage";
 import Cart from "./pages/Global/Cart";
 import Shops from "./pages/Global/Shops";
-import ContactUs from "./pages/Global/ContactUs";
+import { ContactUs } from "./pages/Global/ContactUs";
 import AdminHome from "./pages/Admin/AdminHome";
 import AddProduct from "./pages/Admin/AddProduct";
 import MaintainProducts from "./pages/Admin/MaintainProducts";
@@ -18,6 +17,7 @@ import MaintainShops from "./pages/Admin/MaintainShops";
 import MaintainCategories from "./pages/Admin/MaintainCategories";
 import EditProduct from './pages/Admin/EditProduct';
 import NotFound from "./pages/Global/NotFound";
+import SingleProduct from "./pages/Global/SingleProduct";
 
 
 function App() {
@@ -75,6 +75,7 @@ function App() {
         <Route path="admin/maintain-product" element={ <MaintainProducts /> } />
         <Route path="admin/maintain-shops" element={ <MaintainShops /> } />
         <Route path="admin/maintain-categories" element={ <MaintainCategories /> } />
+        <Route path="global/single-product/:id" element={<SingleProduct/>} />
         <Route path="*" element={ <NotFound /> } />
       </Routes>
     </div>

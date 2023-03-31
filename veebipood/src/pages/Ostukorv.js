@@ -41,7 +41,7 @@ function Ostukorv() { // index ehk jarjekorranumber 0     1       2          3  
         <div key={jrkNr}>
           <img className="pilt" src={yksToode.pilt} alt="" />
           <div>{yksToode.nimi}</div>
-          <div>{yksToode.hind}</div>
+          <div>{yksToode.hind}</div> 
           <button onClick={() => lisa(yksToode)}>+</button> 
           <button onClick={() => kustuta(jrkNr)}>x</button>
         </div>)}
