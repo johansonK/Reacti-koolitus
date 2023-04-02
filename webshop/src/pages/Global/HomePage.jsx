@@ -38,7 +38,7 @@ function HomePage() {
   }
 
   return (
-    <div>
+    <div> 
       <button onClick={sortAZ}>Sort A-Z</button>
       <button onClick={sortZA}>Sort Z-A</button>
       <button onClick={sortPriceAsc}>Sort by price low to high</button>
