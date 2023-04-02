@@ -4,7 +4,13 @@ import tootajadFailist from "../tootajad.json";
 function Meist() {
 
   const [kontakt, naitaKontakt] = useState("");
-  const tootajad = tootajadFailist
+  const tootajad = tootajadFailist;
+  const [valitud, uuendaValitud] = useState("");
+
+  const votaYhendust = (yksTootaja) => {
+    naitaKontakt(yksTootaja.Telefon);
+    uuendaValitud(yksTootaja.Nimi)
+  }
 
   return (
     <div>
@@ -12,6 +18,7 @@ function Meist() {
       <div>Oleme Baltiriikide tuntuim uudiste ettevõte</div>
       <br />
       <div>Meie tootajad:</div>
+      {/*VALITUD INIMINE: {valitud}*/}
       <br />
 
       {/*<div>Tiina Teha</div>
@@ -28,13 +35,15 @@ function Meist() {
       <br /> <br />
   {kontakt !== "" && <div>Tema kontakt: {kontakt}</div>}*/}
 
-      {tootajad.map(yksTootaja =>  
       <div>
+      {tootajad.map((yksTootaja, index) =>  
+      <div className={yksTootaja.Nimi === valitud ? "valitud" : undefined} key={index}>
         <div>{yksTootaja.Nimi}</div> <br />
         <div>{yksTootaja.Ala}</div> <br />
-        <button onClick={() => naitaKontakt(yksTootaja.Telefon)}>Vota uhendust</button>
+        <button onClick={() => votaYhendust(yksTootaja)}>Vota uhendust</button>
         <br /><br />
       </div>)}
+      </div>
 
     </div>
   )
