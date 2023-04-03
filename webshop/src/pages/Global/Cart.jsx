@@ -1,5 +1,8 @@
+import Button from '@mui/material/Button';
+
 import React, {useState} from 'react';
 import {Link} from "react-router-dom";
+import "../../css/Cart.css";
 //import cartFromFile from "../../data/cart.json"
 
 function Cart() {
@@ -12,6 +15,21 @@ const emptyCart = () => {
   localStorage.setItem("cart", JSON.stringify([]));
 }
 
+const decreaseQuantity = (index) => {
+  cart[index].quantity = cart[index].quantity -1;
+  if (cart[index].quantity === 0) {
+    removeFromCart(index);
+  }
+  setCart(cart.slice());
+  localStorage.setItem("cart", JSON.stringify(cart));
+}
+
+const increaseQuantity = (index) => {
+  cart[index].quantity = cart[index].quantity +1;
+  setCart(cart.slice());
+  localStorage.setItem("cart", JSON.stringify(cart));
+}
+
 const removeFromCart = (index) => {
   cart.splice(index, 1);
   setCart(cart.slice());
@@ -20,8 +38,9 @@ const removeFromCart = (index) => {
 
 const summary = () => {
   let sum = 0;
-  cart.forEach(element => sum = sum + element.price);
-  return sum;
+  cart.forEach(element => sum = sum + element.product.price * element.quantity);
+  //element.product.price * element.quantity --- toote hind korrutatakse toote kogusega
+  return sum.toFixed(2);// toFixed(2)---n2itab kahte koma kohta
 }
 
 //ostukorvi kogusumma arvutus +
@@ -36,23 +55,32 @@ const summary = () => {
 
   return (
     <div>
-      {cart.length > 0 && <button onClick={emptyCart}>Empty cart</button>} <br /> <br />
-      {cart.length > 0 && <div>Item summary: {cart.length}</div>}
+      {cart.length > 0 &&      
+        <div className="cart-top">
+          <div> Total different items: {cart.length}</div>          
+          <Button variant="outlined" onClick={emptyCart} >Empty cart</Button>
+        </div>}
       {cart.map((element, index) => 
-        <div>
-          <img src={element.image} alt="" />
-          <div>{element.name}</div>
-          <div>{element.price}</div>
-          <button onClick={() => removeFromCart(index)}>X</button>
-        </div> )}
+        <div className="product" key={index}>
+          <img className="image" src={element.product.image} alt="" />
+          <div className="name" >{element.product.name}</div>
+          <div className="price" >{element.product.price} € </div>
+          <div className="quantity">
+            <img className="button" onClick={() => decreaseQuantity(index)} src="/minus.png" alt="" />
+            <div>{element.quantity} pcs</div>
+            <img className="button" onClick={() => increaseQuantity(index)} src="/plus.png" alt="" />
+          </div>
+          <div className="total" >{(element.product.price * element.quantity).toFixed(2)} €</div>
+          <img className="button" onClick={() => removeFromCart(index)} src="/remove.png" alt="" />
+          </div> )}
         {cart.length === 0 && 
         <div>
           Cart is empty. <br /> <br />
           <Link to="/" >Add products</Link> <br />
         </div>}
         {cart.length > 0 &&
-        <div>
-          Subtotal: {summary()}
+        <div className="cart-bottom">
+          <div className="sum" >Subtotal: {summary()} €</div>
         </div>
         }
     </div>

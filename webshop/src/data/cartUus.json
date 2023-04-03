@@ -1,0 +1,25 @@
+[
+    {"toode": {
+        "id": 43146808,
+        "image": "https://ir.ebaystatic.com/rs/v/fxxj3ttftm5ltcqnto1o4baovyl.png",
+        "name": "Shop on eBay",
+        "price": 20,
+        "description": "Shop on eBay",
+        "category": "ebay",
+        "active": true
+    },
+    "kogus": 3 
+    },
+    { "product": {
+        "id": 46769528,
+        "image": "https://i.ebayimg.com/thumbs/images/g/4g4AAOSwqAtjd2a4/s-l225.webp",
+        "name": "Butane Gas Cartridge",
+        "price": 170.62,
+        "description": "Butane Gas Cartridge gaskartuschen Bunsen Burners Camping Stove Gas Cooker 227g",
+        "category": "camping",
+        "active": true
+    },
+     "quantity": 1
+    }
+]
+

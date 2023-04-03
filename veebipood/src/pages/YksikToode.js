@@ -21,7 +21,7 @@ const leitud = tootedFailist[jrkNr]; // votab uhe toote failist, kusjuures esime
 //const leitud = ["Nobe", "Tesla", "BMW"][2] ----> leitud sisse tuleb bmw
 
 //app.js url, tooted.js url ja yksiktoode const {jrkNr} seotud omavahel
-
+ 
 
   return (
     <div>
