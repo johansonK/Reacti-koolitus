@@ -24,7 +24,7 @@ const leitud = tootedFailist[jrkNr]; // votab uhe toote failist, kusjuures esime
  
 
   return (
-    <div>
+    <div> 
       <img src={leitud.pilt} alt="" />
       <div>Klikitud toote jarjekorranumber: {jrkNr} </div>
       <div>Klikitud toote nimi:{leitud.nimi}</div>

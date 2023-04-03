@@ -45,7 +45,7 @@ function Tooted() {
       <button onClick={() => filtreeriEsiTaheAlusel("A")}>A</button>
       <button onClick={() => filtreeriEsiTaheAlusel("N")}>N</button>
       {tooted.map((toode, jarjekorraNr) => 
-          <div key={jarjekorraNr}>
+          <div key={jarjekorraNr}> 
               <Link to={"/yksik/" + jarjekorraNr}>
                 <img className="pilt" src={toode.pilt} alt="" />
                 <div>{toode.nimi}</div>

@@ -21,7 +21,7 @@ const index = productsFromFile.findIndex(element => element.id === Number(id))
 //===     vasak ja parem pool vorduvad
 /// kogus !==0   pane nulli tagasi
 /// kogus === 0  suurenda/vahenda
-
+ 
 
   const idRef = useRef();
   const nameRef = useRef();

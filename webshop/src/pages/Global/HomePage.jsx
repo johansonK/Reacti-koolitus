@@ -60,7 +60,7 @@ function HomePage() {
       <Button onClick={sortPriceDesc}>Sort by price high to low</Button>
       {products.map((element,index) => 
         <div key={index}>
-          <Link to={"global/single-product/" + index}>
+          <Link to={"/single-product/" + index}>
           <img src={element.image} alt="" />
           <div>{element.name}</div>
           <div>{element.price}</div>
