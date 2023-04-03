@@ -1,9 +1,15 @@
 
 function Uudised() {
+
+  const uudised = JSON.parse(localStorage.getItem("uudised")) || [];
+
   return (
   <div>
       <div> See on uudisteleht, nahtav localhost:3001/uudised aadressil</div>
-      <div> Peagi lisame uudised</div>
+      {uudised.length === 0 && <div> Ühtegi uudist hetkel pole! Peagi lisame uudised</div>}
+      {uudised.map((yksUudis, index) => 
+      <div key={index} >{yksUudis}
+      </div>)}
   </div>)
 }
 

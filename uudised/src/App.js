@@ -8,6 +8,7 @@ import Avalehele from './pages/Avalehele';
 import Uudised from './pages/Uudised';
 import Kontakt from './pages/Kontakt';
 import Meist from './pages/Meist';
+import LisaUudis from './pages/LisaUudis';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
             <Nav.Link as={Link} to="/uudised">Uudised</Nav.Link>
             <Nav.Link as={Link} to="/kontakt">Kontakt</Nav.Link>
             <Nav.Link as={Link} to="/meist">Meist</Nav.Link>
+            <Nav.Link as={Link} to="/lisa-uudis">Lisa uudis</Nav.Link>
           </Nav>
         </Container>
       </Navbar>
@@ -32,6 +34,7 @@ function App() {
         <Route path="uudised" element={ <Uudised/> }/>
         <Route path="kontakt" element={ <Kontakt/> }/>
         <Route path="meist" element={ <Meist/> }/>
+        <Route path="lisa-uudis" element={ <LisaUudis/> } />
       </Routes>
       
     </div>
