@@ -9,6 +9,9 @@ import Uudised from './pages/Uudised';
 import Kontakt from './pages/Kontakt';
 import Meist from './pages/Meist';
 import LisaUudis from './pages/LisaUudis';
+import HaldaUudiseid from './pages/HaldaUudiseid';
+import YksUudis from './pages/YksUudis';
+import MuudaUudis from './pages/MuudaUudis';
 
 function App() {
   return (
@@ -23,6 +26,7 @@ function App() {
             <Nav.Link as={Link} to="/kontakt">Kontakt</Nav.Link>
             <Nav.Link as={Link} to="/meist">Meist</Nav.Link>
             <Nav.Link as={Link} to="/lisa-uudis">Lisa uudis</Nav.Link>
+            <Nav.Link as={Link} to="/halda">Halda uudiseid</Nav.Link>
           </Nav>
         </Container>
       </Navbar>
@@ -35,6 +39,9 @@ function App() {
         <Route path="kontakt" element={ <Kontakt/> }/>
         <Route path="meist" element={ <Meist/> }/>
         <Route path="lisa-uudis" element={ <LisaUudis/> } />
+        <Route path="halda" element={<HaldaUudiseid/>}  />
+        <Route path="uudis/:index" element={<YksUudis/>}  />
+        <Route path="muuda/:index" element={<MuudaUudis/>}  />
       </Routes>
       
     </div>

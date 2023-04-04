@@ -1,7 +1,8 @@
-import {useRef} from "react";
+import {useRef, useState} from "react";
 
 function LisaUudis() {
 
+    const [message, setMessage] = useState("");
     const uudiseRef = useRef();
 
     const lisaUusUudis = () => {
@@ -17,10 +18,23 @@ function LisaUudis() {
 
     }
 
+    const kontrolli = () => {
+        setMessage("");
+        if (uudiseRef.current.value.charAt(0) === uudiseRef.current.value.charAt(0).toLowerCase())
+        {setMessage("Sisestasid uudise v2ikse t2hega, palun paranda!")
+        } 
+
+        if (uudiseRef.current.value.includes("  ")) {
+            setMessage("Sisestasid kaks tyhikust, palun paranda!")
+        }
+    }
+
+
     return (
         <div>
+            <div>{message}</div>
             <label >Uudise nimi</label>
-            <input ref={uudiseRef} type="text" />
+            <input onChange={kontrolli} ref={uudiseRef} type="text" />
             <button onClick={lisaUusUudis}>Lisa uudis</button>
         </div>
       );
