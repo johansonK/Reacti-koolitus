@@ -29,8 +29,9 @@ function HomePage() {
   }
 
   const filterProducts = (categoryClicked) => {
-
-  }
+    const filteredProducts = productsFromFile.filter((product) => product.category === categoryClicked);
+    setProducts(filteredProducts);
+}
 
   const addProductToCart = (productClicked) => {
     const cart = JSON.parse(localStorage.getItem("cart"))||[];
@@ -56,7 +57,6 @@ function HomePage() {
     localStorage.setItem("cart", JSON.stringify(cart));
   }
  
-///KODUS filtreerida ketegooriate alusel
 
   return (
     <div> 
@@ -66,10 +66,10 @@ function HomePage() {
       <Button onClick={sortPriceDesc}>Sort by price high to low</Button>
       <br />
       <div>{products.length}pcs</div>
-      <button>camping</button>
-      <button>tent</button>
-      <button>belts</button>
-      <button>jeans</button>
+      <button onClick={() => filterProducts ("camping")}>Camping</button>
+      <button onClick={() => filterProducts ("tent")}>Tent</button>
+      <button onClick={() => filterProducts ("belts")}>Belts</button>
+      <button onClick={() => filterProducts ("jeans")}>Jeans</button>
       {products.map(element => 
         <div key={element.id}>
           <Link to={"/single-product/" + element.id}>
