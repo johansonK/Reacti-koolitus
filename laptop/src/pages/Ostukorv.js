@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 
 
-function Ostukorv() {
+function Ostukorv() { 
 
 const [ostukorv, uuendaOstukorv] = useState(JSON.parse(localStorage.getItem("ostukorvLaptop")) || [])
 

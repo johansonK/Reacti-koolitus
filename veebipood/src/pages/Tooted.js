@@ -18,7 +18,7 @@ function Tooted() {
 
     const lisaOstukorvi = (klikitudToode) => {
         ostukorvFailist.push(klikitudToode);
-    }
+    } 
 
     const sorteeriHindKasv = () => {
       tooted.sort((a,b) => a.hind - b.hind);
