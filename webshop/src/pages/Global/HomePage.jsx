@@ -28,6 +28,10 @@ function HomePage() {
     setProducts(products.slice());
   }
 
+  const filterProducts = (categoryClicked) => {
+
+  }
+
   const addProductToCart = (productClicked) => {
     const cart = JSON.parse(localStorage.getItem("cart"))||[];
     //    ||[] kasutatakse, kui midagi ei ole st on tyhi
@@ -51,6 +55,8 @@ function HomePage() {
     
     localStorage.setItem("cart", JSON.stringify(cart));
   }
+ 
+///KODUS filtreerida ketegooriate alusel
 
   return (
     <div> 
@@ -58,9 +64,15 @@ function HomePage() {
       <Button onClick={sortZA}>Sort Z-A</Button>
       <Button onClick={sortPriceAsc}>Sort by price low to high</Button>
       <Button onClick={sortPriceDesc}>Sort by price high to low</Button>
-      {products.map((element,index) => 
-        <div key={index}>
-          <Link to={"/single-product/" + index}>
+      <br />
+      <div>{products.length}pcs</div>
+      <button>camping</button>
+      <button>tent</button>
+      <button>belts</button>
+      <button>jeans</button>
+      {products.map(element => 
+        <div key={element.id}>
+          <Link to={"/single-product/" + element.id}>
           <img src={element.image} alt="" />
           <div>{element.name}</div>
           <div>{element.price}</div>

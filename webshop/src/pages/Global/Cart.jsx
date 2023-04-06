@@ -1,6 +1,5 @@
 import Button from '@mui/material/Button';
-
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Link} from "react-router-dom";
 import "../../css/Cart.css";
 //import cartFromFile from "../../data/cart.json"
@@ -9,6 +8,13 @@ function Cart() {
 
 const [cart, setCart] = useState(JSON.parse(localStorage.getItem("cart")) || [] );
 // votab kogu localStorage sisu ja lisab ostukorvi
+const [parcelMachines, setParcelMachines] = useState([]);
+
+useEffect(() => {
+  fetch("https://www.omniva.ee/locations.json")
+  .then(res => res.json())//res--> response, json l6pp peab olema sama
+  .then(json => setParcelMachines(json))// n2itab kuhu tulemus l2heb st json l2heb setParcelMachinesisse
+}, []);
 
 const emptyCart = () => {
   setCart ([]);
@@ -52,7 +58,7 @@ const summary = () => {
 
 ///singleproduct
 
-
+///////Kodus v6ib panna json view plugina peale, on parem vaadata andmeid
   return (
     <div>
       {cart.length > 0 &&      
@@ -81,6 +87,7 @@ const summary = () => {
         {cart.length > 0 &&
         <div className="cart-bottom">
           <div className="sum" >Subtotal: {summary()} €</div>
+          <select>{parcelMachines.filter(pm => pm.A0_NAME === "EE").map(pm => <option key={pm.NAME}>{pm.NAME}</option> )}</select>
         </div>
         }
     </div>

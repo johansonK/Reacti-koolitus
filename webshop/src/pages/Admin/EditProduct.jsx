@@ -34,6 +34,15 @@ const index = productsFromFile.findIndex(element => element.id === Number(id))
   const [isUnique, setUnique] = useState(true);
 
   const edit = () => {
+    if (idRef.current.value === "") {
+      return;
+    }
+    if (nameRef.current.value === "") {
+      return;
+    }
+    if (priceRef.current.value === "") {
+      return;
+    }
     productsFromFile[index] = {
       "id": Number(idRef.current.value),
       "name": nameRef.current.value,
@@ -49,12 +58,17 @@ const index = productsFromFile.findIndex(element => element.id === Number(id))
     //["Nobe", "BMW", "Tesla"][0] = "audi"
   }
 
+ 
   
 
   const checkIdUniqueness = () => {
-    
+    if  (idRef.current.value === id) {
+    setUnique(true);
+    return;
+  }
     const product = productsFromFile.find(element => element.id === Number(idRef.current.value));
-    if (product === undefined){
+    if 
+    (product === undefined) {
       //kellelgi ei ole olemas! korras, unikaalne!
       setUnique(true);
       console.log("KELLELGI EI OLE OLEMAS")

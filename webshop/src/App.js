@@ -75,7 +75,7 @@ function App() {
         <Route path="admin/maintain-product" element={ <MaintainProducts /> } />
         <Route path="admin/maintain-shops" element={ <MaintainShops /> } />
         <Route path="admin/maintain-categories" element={ <MaintainCategories /> } />
-        <Route path="global/single-product/:id" element={<SingleProduct/>} />
+        <Route path="single-product/:id" element={<SingleProduct/>} />
         <Route path="*" element={ <NotFound /> } />
       </Routes>
     </div>

@@ -18,6 +18,18 @@ function AddProduct() {
   
 
   const add = () => {
+    if (idRef.current.value === "") {
+      toast.error("Ei saa lisada tyhja ID-ga!")
+      return;
+    }
+    if (nameRef.current.value === "") {
+      toast.error("Ei saa lisada tyhja nimega!")
+      return;
+    }
+    if (priceRef.current.value === "") {
+      toast.error("Ei saa lisada tyhja hinnaga!")
+      return;
+    }
     productsFromFile.push({
       "id": Number(idRef.current.value),
       "name": nameRef.current.value,

@@ -5,14 +5,18 @@ import productsFromFile from "../../data/products.json"
 function SingleProduct() {
 
  const {id} = useParams();
- //const found = productsFromFile[id]
- const found = productsFromFile.find(element => element.id === Number(id));
- //const index = productsFromFile.findIndex(element => element.id === Number(id))
+                                    //["Nobe", "Tesla", "Nobe"]
+ const found = productsFromFile.find(product => product.id === Number(id));         // 1 toode "Nobe"
+               // productsFromFile.filter(product => product.id === Number(id)[0]); //toodete hulk ["Nobe", "Nobe"]
+               // productsFromFile.findIndex(product => product.id === Number(id)); // 1 toote jrknr  0
+
+ //productsFromFile.find();
+ 
   
 
 /////////KODUS TEHA!!!!
  
-    //veebipoe n;ite pohjal
+    //veebipoe n2ite pohjal
     //yhe toote v6tmine 
     //1.app.js sees url, kus votan /:id
     //2.HomePage sees oean tegema siia lehele sattumise l2bi <Link>
@@ -20,18 +24,18 @@ function SingleProduct() {
     //4. .find() <--- see on erinev
   return (
     <div>
-      <img src={found.image} alt="" />
-      <div>ID:{found.id} </div>
-      <div>Name: {found.name}</div>
-      <div>Description:..</div>
-      <div>Price: {found.price}</div>
+      {found !== undefined &&
+        <div>
+          <img src={found.image} alt="" />
+          <div>ID:{found.id} </div>
+          <div>Name: {found.name}</div>
+          <div>Description:..</div>      
+          <div>Category: {found.category}</div>
+          <div>Price: {found.price}</div>
+        </div>}
+        {found === undefined && <div>Toodet ei leitud</div> }
     </div>
   ) 
 } 
 
-
-//
-//
-//
-//
 export default SingleProduct
