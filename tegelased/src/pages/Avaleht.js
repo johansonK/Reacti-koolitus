@@ -20,7 +20,7 @@ function Avaleht() {
     const valiTegelane = (klikitudTegelane) => {
         const valitud = JSON.parse(localStorage.getItem("valitudTegelased")) || [];
         valitud.push(klikitudTegelane);
-        localStorage.setItem("valitudTegelased", valitud);
+        localStorage.setItem("valitudTegelased", JSON.stringify(valitud));
         
     }
 
