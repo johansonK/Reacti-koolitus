@@ -2,7 +2,7 @@ import {Route, Routes, Link} from 'react-router-dom'
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import { useTranslation } from 'react-i18next';
+//import { useTranslation } from 'react-i18next';
 import './App.css';
 import Avalehele from './pages/Avalehele';
 import Uudised from './pages/Uudised';
@@ -12,6 +12,8 @@ import LisaUudis from './pages/LisaUudis';
 import HaldaUudiseid from './pages/HaldaUudiseid';
 import YksUudis from './pages/YksUudis';
 import MuudaUudis from './pages/MuudaUudis';
+import KasutajaPostitus from './pages/KasutajaPostitus';
+import YksPostitus from './pages/YksPostitus';
 
 function App() {
   return (
@@ -42,6 +44,8 @@ function App() {
         <Route path="halda" element={<HaldaUudiseid/>}  />
         <Route path="uudis/:index" element={<YksUudis/>}  />
         <Route path="muuda/:index" element={<MuudaUudis/>}  />
+        <Route path="kasutaja-postitus/:kasutajaId" element={<KasutajaPostitus/>}  />
+        <Route path="vaata-postitus/:postituseId" element={<YksPostitus/>}  />
       </Routes>
       
     </div>
