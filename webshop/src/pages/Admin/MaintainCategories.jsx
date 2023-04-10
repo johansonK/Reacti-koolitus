@@ -1,6 +1,7 @@
 import React from 'react'
 import { useRef, useState } from 'react';
 import { useEffect } from 'react'
+import config from "../../data/config.json"
 
 function MaintainCategories() {
   const [categories, setCategories] = useState([]);
@@ -9,7 +10,7 @@ function MaintainCategories() {
 //uef --> kohe, kui lehele tulles, midagi kysitakse v66ralt URL-lt siis peab uef tegema
 
   useEffect(() => {
-    fetch("https://webshop-a1581-default-rtdb.europe-west1.firebasedatabase.app/categories.json") 
+    fetch(config.categoriesDbUrl) 
     ///saadud aadressilt https://jsonplaceholder.typicode.com/
       .then(response => response.json()) //.then v6tab tagastuse ja siis v6tab sisu
       .then(json => setCategories(json || []))    //json--> lehekylje sisu
@@ -17,9 +18,9 @@ function MaintainCategories() {
 
   const add = () => {
     categories.push({"name": categoryRef.current.value});
-    setCategories(categories.slice());
+    setCategories(categories.slice()); 
     //nagu localStorage.setItem("categories", categories)
-    fetch("https://webshop-a1581-default-rtdb.europe-west1.firebasedatabase.app/categories.json", {
+    fetch(config.categoriesDbUrl, {
       "method": "PUT",   /// method default on GET, aga tuleb p66rata teistpidi
       "body": JSON.stringify(categories) // body on v6ti
     }) 
@@ -29,13 +30,13 @@ function MaintainCategories() {
     categories.splice(index, 1);
     setCategories(categories.slice());
     //nagu localStorage.setItem("categories", categories)
-    fetch("https://webshop-a1581-default-rtdb.europe-west1.firebasedatabase.app/categories.json", {
+    fetch(config.categoriesDbUrl, {
       "method": "PUT",   /// method default on GET, aga tuleb p66rata teistpidi
       "body": JSON.stringify(categories) // body on v6ti
     }) 
   }
 
-  return (
+  return ( 
     <div>
       <label>Category</label> <br />
       <input ref={categoryRef} type="text" /> <br />

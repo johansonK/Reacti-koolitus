@@ -1,20 +1,35 @@
-import React, {useState, useRef} from 'react'
-import productsFromFile from "../../data/products.json";
+import React, {useState, useRef, useEffect} from 'react'
+//import productsFromFile from "../../data/products.json";
 import {Link} from "react-router-dom";
+import config from "../../data/config.json"
 
 
 function MaintainProducts() {
 
-const [products, setProducts] = useState(productsFromFile);
+const [products, setProducts] = useState([]);
+const [dbProducts, setDbProducts] = useState([]);
 const searchedRef = useRef()
 
-const remove = (index) => {
-  productsFromFile.splice(index, 1); // kustutan siit, sest siis kustub ka avalehelt
-  setProducts(productsFromFile.slice())
+useEffect(() => {                                                      ///!!!!!!!, vaja see lingi l6pp muuta
+  fetch(config.productsDbUrl)
+    .then (response => response.json())   
+    .then (json => {                     
+      setProducts(json || []);  
+      setDbProducts(json || []); 
+    })    
+}, []);
+
+
+const remove = (productId) => {
+  const index = dbProducts.findIndex(element => element.id === productId);
+  dbProducts.splice(index, 1); // kustutan siit, sest siis kustub ka avalehelt
+  //setProducts(dbProducts.slice());
+  fetch(config.productsDbUrl, {"method": "PUT", "body": JSON.stringify(dbProducts)});
+  searchFromProducts();
 }
 
 const searchFromProducts = () => {
-  const result = productsFromFile.filter(element => 
+  const result = dbProducts.filter(element => 
     element.name.toLowerCase().includes(searchedRef.current.value.toLowerCase()));
     //teisendab otsingu ja nime k6ik tahed vaikseks, et saaks otsida nii suurte kui ka vaikeste tahtedega
   setProducts(result);
@@ -34,7 +49,7 @@ const searchFromProducts = () => {
           <div>{element.category}</div>
           <div>{element.description}</div>
           <div>{element.active}</div>
-          <button onClick={() => remove(index2)}>Remove</button>
+          <button onClick={() => remove(element.id)}>Remove</button>
           <Link to={"/admin/edit/"+ element.id}>
             <button>Change</button>
           </Link>

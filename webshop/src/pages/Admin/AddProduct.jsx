@@ -1,6 +1,7 @@
 import { ToastContainer, toast } from 'react-toastify';
-import React, {useRef, useState} from 'react';
-import productsFromFile from "../../data/products.json"
+import React, {useRef, useState, useEffect} from 'react';
+//import productsFromFile from "../../data/products.json"
+import config from "../../data/config.json"
 
 
 function AddProduct() {
@@ -15,6 +16,15 @@ function AddProduct() {
   const descriptionRef = useRef();
   const activeRef = useRef();
   const [isUnique, setUnique] = useState(true);
+  const [dbProducts, setDbProducts] = useState([]);
+
+  useEffect(() => {                                                      ///!!!!!!!, vaja see lingi l6pp muuta
+    fetch(config.productsDbUrl)
+      .then (response => response.json())   
+      .then (json => {                      
+        setDbProducts(json || []); 
+      })   
+  }, []);
   
 
   const add = () => {
@@ -30,15 +40,15 @@ function AddProduct() {
       toast.error("Ei saa lisada tyhja hinnaga!")
       return;
     }
-    productsFromFile.push({
+    dbProducts.push({
       "id": Number(idRef.current.value),
       "name": nameRef.current.value,
       "price": Number(priceRef.current.value),
       "image": imageRef.current.value,
       "category": categoryRef.current.value,
       "description": descriptionRef.current.value,
-      "active": activeRef.current.checked}
-    )
+      "active": activeRef.current.checked
+    })
 
     ///j2rgneb jutt, et p2rast toote lisamist v2lja tyhjeneks
     idRef.current.value="";
@@ -49,12 +59,12 @@ function AddProduct() {
     descriptionRef.current.value="";
     activeRef.current.checked=false;
     toast.success ("Toode edukalt lisatus");
-
-  }
+    fetch(config.productsDbUrl, {"method": "PUT", "body": JSON.stringify(dbProducts)});
+    }
 
   const checkIdUniqueness = () => {
     
-    const product = productsFromFile.find(element => element.id === Number(idRef.current.value));
+    const product = dbProducts.find(element => element.id === Number(idRef.current.value));
     if (product === undefined){
       setUnique(true);
       //console.log("KELLELGI EI OLE OLEMAS")

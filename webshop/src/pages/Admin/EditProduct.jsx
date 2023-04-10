@@ -1,10 +1,13 @@
-import React, {useRef, useState} from 'react';
+import React, {useRef, useState, useEffect} from 'react';
 import {useParams, useNavigate} from "react-router-dom";
 // "react-router-dom" sest tegemist URL ja navigeerimisega
-import productsFromFile from "../../data/products.json";
+//import productsFromFile from "../../data/products.json";
+import config from "../../data/config.json"
 
 function EditProduct() {
   const { id } = useParams ();
+  const [dbProducts, setDbProducts] = useState([]);
+
 // enne veebipoes: const leitud = productsFromFile[id] ---> 
 //[] tahendavad jarjekorra nr alusel leidmist
 //.find vs. .filter ---> kysivad,mis on tingimus
@@ -14,8 +17,8 @@ function EditProduct() {
 //find on ilusam, kui filter, aga vahet pole
 //proovit66des pole alati olulin, et tapselt sama saak, vaid et pyyaks sarnast
                                     //  573893 === "573893" ei vordu nii
-const found = productsFromFile.find(element => element.id === Number(id)); //.find /.sort/.map
-const index = productsFromFile.findIndex(element => element.id === Number(id))
+const found = dbProducts.find(element => element.id === Number(id)); //.find /.sort/.map
+const index = dbProducts.findIndex(element => element.id === Number(id))
 
 //!==    ! keerab vastupidi, st ei vordu
 //===     vasak ja parem pool vorduvad
@@ -32,6 +35,14 @@ const index = productsFromFile.findIndex(element => element.id === Number(id))
   const activeRef = useRef();
   const navigate = useNavigate();
   const [isUnique, setUnique] = useState(true);
+  
+  useEffect(() => {                                                      ///!!!!!!!, vaja see lingi l6pp muuta
+    fetch(config.productsDbUrl)
+      .then (response => response.json())   
+      .then (json => {                      
+        setDbProducts(json || []); 
+      })   
+  }, []);
 
   const edit = () => {
     if (idRef.current.value === "") {
@@ -43,7 +54,7 @@ const index = productsFromFile.findIndex(element => element.id === Number(id))
     if (priceRef.current.value === "") {
       return;
     }
-    productsFromFile[index] = {
+    dbProducts[index] = {
       "id": Number(idRef.current.value),
       "name": nameRef.current.value,
       "price": Number(priceRef.current.value),
@@ -52,21 +63,23 @@ const index = productsFromFile.findIndex(element => element.id === Number(id))
       "description": descriptionRef.current.value,
       "active": activeRef.current.checked
     };
-    navigate("/admin/maintain-product");
+    fetch(config.productsDbUrl, {"method": "PUT", "body": JSON.stringify(dbProducts)})
+    .then(res => res.json())
+    .then(() => navigate("/admin/maintain-product"));
     //productsFromFile[5] = updatedProduct;
     // muutmine on jarjekorranr alusel
     //["Nobe", "BMW", "Tesla"][0] = "audi"
   }
 
- 
-  
+  //fetch muudab koodi asynkroonseks, mis ei ole eriti ilus ja tekitab ebavajalikke pause, 
+  //seep2rast vajalikud mingid muudatused
 
-  const checkIdUniqueness = () => {
+   const checkIdUniqueness = () => {
     if  (idRef.current.value === id) {
     setUnique(true);
     return;
   }
-    const product = productsFromFile.find(element => element.id === Number(idRef.current.value));
+    const product = dbProducts.find(element => element.id === Number(idRef.current.value));
     if 
     (product === undefined) {
       //kellelgi ei ole olemas! korras, unikaalne!

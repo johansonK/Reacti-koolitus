@@ -15,6 +15,8 @@ useEffect(() => {
   .then(res => res.json())//res--> response, json l6pp peab olema sama
   .then(json => setParcelMachines(json))// n2itab kuhu tulemus l2heb st json l2heb setParcelMachinesisse
 }, []);
+// eelnev on v6tmine, kui method ja body siis on saatmine
+
 
 const emptyCart = () => {
   setCart ([]);

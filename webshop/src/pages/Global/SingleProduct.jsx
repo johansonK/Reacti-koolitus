@@ -1,17 +1,32 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import {useParams } from "react-router-dom"
-import productsFromFile from "../../data/products.json"
+//import productsFromFile from "../../data/products.json"
+import config from "../../data/config.json"
+
 
 function SingleProduct() {
 
- const {id} = useParams();
+
+const [dbProducts, setDbProducts] = useState([]);
+const {id} = useParams();
                                     //["Nobe", "Tesla", "Nobe"]
- const found = productsFromFile.find(product => product.id === Number(id));         // 1 toode "Nobe"
+
+
+ const found = dbProducts.find(product => product.id === Number(id));         // 1 toode "Nobe"
                // productsFromFile.filter(product => product.id === Number(id)[0]); //toodete hulk ["Nobe", "Nobe"]
                // productsFromFile.findIndex(product => product.id === Number(id)); // 1 toote jrknr  0
 
  //productsFromFile.find();
  
+ 
+
+ useEffect(() => {                                                     
+  fetch(config.productsDbUrl)
+    .then (response => response.json())   
+    .then (json => {                      
+      setDbProducts(json || []); 
+    })   
+}, []);
   
 
 /////////KODUS TEHA!!!!

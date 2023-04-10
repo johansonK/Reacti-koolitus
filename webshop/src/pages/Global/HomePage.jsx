@@ -1,12 +1,34 @@
 import React, {useState} from 'react'
-import productsFromFile from "../../data/products.json";
+//import productsFromFile from "../../data/products.json";
 import {Link} from "react-router-dom";
 import Button from '@mui/material/Button';
+import { useEffect } from 'react';
+import config from "../../data/config.json"
 
 
 function HomePage() {
 
-  const [products, setProducts] = useState(productsFromFile);
+  const [products, setProducts] = useState([]);  
+  ///useState(productsFromFile), kui pole sulgudes midagi, peavad olema kandilised sulud, muid error
+
+  const [dbProducts, setDbProducts] = useState([]);
+///!!!!!!!, vaja see lingi l6pp muuta
+ const [categories, setCategories] = useState([]);
+  useEffect(() => {       
+   
+      fetch(config.categoriesDbUrl)      
+        .then(response => response.json()) 
+        .then(json => setCategories(json || []))
+    fetch(config.productsDbUrl)
+      .then (response => response.json())   ///terve p2ring, k6ik andmed, mis seal saada
+      .then (json => {                      ///kindlad andmed
+        setProducts(json || []);  //null on t2ielik tyhjus, [] on tyhi hulk, ag amitte t'ielik tyhjus
+        setDbProducts(json || []); // [].length  [].map()   annavad errori:  null.length   null.map()
+      })   
+  }, []);
+
+  // "" .starttsWith()  "".endsWith  tyhi s6na
+  // [][0]  [].map()  [].    tyhi array
 
   const sortAZ = () => {
     products.sort((a,b) => a.name.localeCompare(b.name));
@@ -29,7 +51,7 @@ function HomePage() {
   }
 
   const filterProducts = (categoryClicked) => {
-    const filteredProducts = productsFromFile.filter((product) => product.category === categoryClicked);
+    const filteredProducts = dbProducts.filter((product) => product.category === categoryClicked);
     setProducts(filteredProducts);
 }
 
@@ -57,6 +79,7 @@ function HomePage() {
     localStorage.setItem("cart", JSON.stringify(cart));
   }
  
+//KODUS SHOPS OSA TEHA NAGU CATEGORIES!!!
 
   return (
     <div> 
@@ -66,10 +89,14 @@ function HomePage() {
       <Button onClick={sortPriceDesc}>Sort by price high to low</Button>
       <br />
       <div>{products.length}pcs</div>
-      <button onClick={() => filterProducts ("camping")}>Camping</button>
+      {/*<button onClick={() => filterProducts ("camping")}>Camping</button>
       <button onClick={() => filterProducts ("tent")}>Tent</button>
       <button onClick={() => filterProducts ("belts")}>Belts</button>
-      <button onClick={() => filterProducts ("jeans")}>Jeans</button>
+      <button onClick={() => filterProducts ("jeans")}>Jeans</button>*/}
+      {
+        categories.map(category => <button onClick={() => filterProducts (category.name)}>{category.name}</button>)
+      }
+
       {products.map(element => 
         <div key={element.id}>
           <Link to={"/single-product/" + element.id}>
