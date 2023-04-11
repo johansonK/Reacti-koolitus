@@ -38,7 +38,7 @@ function AddProduct() {
     }
     if (priceRef.current.value === "") {
       toast.error("Ei saa lisada tyhja hinnaga!")
-      return;
+      return; 
     }
     dbProducts.push({
       "id": Number(idRef.current.value),

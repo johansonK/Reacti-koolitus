@@ -1,18 +1,27 @@
-import React, {useRef} from 'react'
-import joogidFailist from "../joogid.json";
+import React, {useEffect, useRef, useState} from 'react'
+//import joogidFailist from "../joogid.json";
+import config from "../../data/config.json"
 
 function LisaJook() {
 
+  const [joogid, setJoogid] = useState([]);
   const joogidRef = useRef();
 
+useEffect(() => {
+  fetch(config.joogidDbUrl)
+  .then(res => res.json())
+  .then(json => setJoogid(json || []))  
+}, []);
+
   const lisaUusJook = () => {
-    joogidFailist.push(joogidRef.current.value);
+    joogid.push({"nimi": joogidRef.current.value});
+    fetch(config.joogidDbUrl, {"method": "PUT", "body": JSON.stringify(joogid)})
 }
 
   return (
     <div>
 
-<label></label>
+    <label>Lisa uus jook:</label>
     <input ref={joogidRef} />
     <button onClick={() => lisaUusJook()}>Lisa jook</button>
 
