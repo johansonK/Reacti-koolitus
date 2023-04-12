@@ -1,10 +1,4 @@
-
-
-import {Routes, Route, Link} from "react-router-dom";
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import { useTranslation } from 'react-i18next';
+import {Routes, Route} from "react-router-dom";
 import './App.css';
 import HomePage from "./pages/Global/HomePage";
 import Cart from "./pages/Global/Cart";
@@ -18,50 +12,20 @@ import MaintainCategories from "./pages/Admin/MaintainCategories";
 import EditProduct from './pages/Admin/EditProduct';
 import NotFound from "./pages/Global/NotFound";
 import SingleProduct from "./pages/Global/SingleProduct";
+import NavigationBar from "./components/NavigationBar"
 
-
+ 
 function App() {
 
-  //koju:
-  // addproduct--toote lisamine 
-  //maintainproduct//toote kustutamine
-  //lisa 3 ja 4 keel veel
+  //proovi t66d readme.docx
 
-  //bootstrap// kodusesse projekti > uudised
-  //i18n --- kodusesse projekti > uudised
-  //favicon
-  //muutke rakenduse nimetus
-  //lisage google font
 
-  const { t, i18n } = useTranslation();
 
-  const changeLang = (newLang) => {
-    i18n.changeLanguage(newLang);
-    localStorage.setItem("language", newLang);
-  }
-
-//{t("cart")} loogeline sulg on javascript, t on translate ja cart peab yhtima i18n failis oleva v6tmega
 
   return (
     <div className="App">
-      <Navbar bg="dark" variant="dark">
-        <Container>
-          <Navbar.Brand as={Link} to="/">Webshop</Navbar.Brand>
-          <Nav className="me-auto">
-            <Nav.Link as={Link} to="/cart">{t("cart")}</Nav.Link>
-            <Nav.Link as={Link} to="/shops">{t("shops")}</Nav.Link>
-            <Nav.Link as={Link} to="/contact">{t("contact")}</Nav.Link>
-            <Nav.Link as={Link} to="/admin">{t("admin")}</Nav.Link>
-          </Nav>
-          <img className="lang" src="/english.png" onClick={() => changeLang("en")} alt="" />
-          <img className="lang" src="/estonia.png" onClick={() => changeLang("ee")} alt="" />
-          <img className="lang" src="/russia.png" onClick={() => changeLang("ru")} alt="" />
-          <img className="lang" src="/german.png" onClick={() => changeLang("de")} alt="" />
-          
-
-          
-        </Container>
-      </Navbar>
+      
+      <NavigationBar/>
 
 
       <Routes>

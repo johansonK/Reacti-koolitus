@@ -51,15 +51,28 @@ const summary = () => {
   return sum.toFixed(2);// toFixed(2)---n2itab kahte koma kohta
 }
 
-//ostukorvi kogusumma arvutus +
-//mitu tykki on ostukorvis valjakuvamine +
-//2ra naita valja tyhjenda nuppu, kogusumma nuppu, mitu tykki valjakuvamist +
-//      kui ostukorvi pole yhtegi toodet +
+const pay = () => {
+  const paymentUrl="https://igw-demo.every-pay.com/api/v4/payments/oneoff";
 
-//naita valja ostukorv on tyhi kirjet kui ostukorvis on esemete arv 1
+  const paymentData = {
+    "api_username": "e36eb40f5ec87fa2",
+    "account_name": "EUR3D1",
+    "amount": summary(),
+    "order_reference": Math.random() * 9999999, //Math.random annab suvalise nr 
+    "nonce": "a9b7f7e79" + Math.random * 9999999 * new Date(),
+    "timestamp": new Date(), // annab praeguse kuup2eva
+    "customer_url": "https://webshop0101.web.app"
+    };
 
-///singleproduct
+  const paymentHeaders = {
+    "Authorization": "Basic ZTM2ZWI0MGY1ZWM4N2ZhMjo3YjkxYTNiOWUxYjc0NTI0YzJlOWZjMjgyZjhhYzhjZA==",
+    "Content-Type": "application/json"
+  };
 
+  fetch(paymentUrl, {"method": "POST", "body": JSON.stringify(paymentData), "headers": paymentHeaders})
+  .then(res => res.json()) 
+  .then(json => window.location.href = json.payment_link) 
+}
 ///////Kodus v6ib panna json view plugina peale, on parem vaadata andmeid
   return (
     <div>
@@ -90,6 +103,8 @@ const summary = () => {
         <div className="cart-bottom">
           <div className="sum" >Subtotal: {summary()} €</div>
           <select>{parcelMachines.filter(pm => pm.A0_NAME === "EE").map(pm => <option key={pm.NAME}>{pm.NAME}</option> )}</select>
+          {/* radio button && dpdsmart uus Select*/}
+          <button onClick={pay}>Pay</button>
         </div>
         }
     </div>

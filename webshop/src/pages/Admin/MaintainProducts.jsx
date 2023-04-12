@@ -40,7 +40,7 @@ const searchFromProducts = () => {
       <input onChange={searchFromProducts} ref={searchedRef} type="text" />
       <div>{products.length}pcs</div>
        {products.map((element, index2) => 
-        <div key={index2}>
+        <div key={index2} className={element.active === true ? "active-product" : "inactive-product"}>
           <img src={element.image} alt="" />
           <div>{element.id}</div>
           <div>{element.name}</div>

@@ -19,7 +19,6 @@ function MaintainShops() {
       setShops(json || []);
       setDbShop(json || []);
     })
-
   }, []);
 
 
@@ -31,15 +30,12 @@ function MaintainShops() {
       "latitude": latitudeRef.current.value,
       "longitude": longitudeRef.current.value
     })
-
     nameRef.current.value="";
     openTimeRef.current.value="";
     latitudeRef.current.value="";
     longitudeRef.current.value="";
     fetch(config.shopsDbUrl, {"method" : "PUT", "body": JSON.stringify(dbShop)})
-    //.then(res => res.json())
-    //.then(() => navigate("/admin/maintain-product"))
-  
+    setShops(dbShop.slice());   
   }
 
   const removeShop = (index) => {

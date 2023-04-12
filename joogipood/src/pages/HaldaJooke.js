@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 //import joogidFailist from "../joogid.json";
-import config from "../../data/config.json"
+import config from "../data/config.json"
 
 function HaldaJooke() {
 

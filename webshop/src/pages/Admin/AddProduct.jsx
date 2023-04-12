@@ -6,6 +6,8 @@ import config from "../../data/config.json"
 
 function AddProduct() {
 
+
+  
   //const [products, setProducts] = useState(productsFromFile);
 
   const idRef = useRef();
@@ -17,8 +19,13 @@ function AddProduct() {
   const activeRef = useRef();
   const [isUnique, setUnique] = useState(true);
   const [dbProducts, setDbProducts] = useState([]);
+  const [categories, setCategories] = useState([])
 
-  useEffect(() => {                                                      ///!!!!!!!, vaja see lingi l6pp muuta
+  useEffect(() => {     
+    fetch(config.categoriesDbUrl)     
+      .then(response => response.json()) 
+      .then(json => setCategories(json || [])) 
+
     fetch(config.productsDbUrl)
       .then (response => response.json())   
       .then (json => {                      
@@ -38,6 +45,14 @@ function AddProduct() {
     }
     if (priceRef.current.value === "") {
       toast.error("Ei saa lisada tyhja hinnaga!")
+      return; 
+    }
+    if (imageRef.current.value.includes (" ")) {
+      toast.error("Ei saa lisada pildi URLi tyhikuga!")
+      return; 
+    }
+    if (nameRef.current.value[0].toLowerCase() === nameRef.current.value[0]) {
+      toast.error("Ei saa lisada nime v2ikse algust2hega!")
       return; 
     }
     dbProducts.push({
@@ -88,7 +103,10 @@ function AddProduct() {
       <label>New image</label> <br />
       <input ref={imageRef}   type="text" /> <br />
       <label>New category</label> <br />
-      <input ref={categoryRef}   type="text" /> <br />
+      {/*<input ref={categoryRef}   type="text" />*/} <br />
+      <select ref={categoryRef}>
+        {categories.map(category => <option key={category.name} >{category.name}</option>)}
+      </select> <br /> <br />
       <label>Description</label> <br />
       <input ref={descriptionRef}  type="text" /> <br />
       <label>Active</label> <br />
