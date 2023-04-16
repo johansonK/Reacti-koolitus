@@ -8,7 +8,7 @@ function Poed() {
     const paneOriginaali = () => {
         uuendaPoed(poedFailist);
     }
-
+ 
     const sorteeriAZ = () => {
         //tavaline .sort() teeb alati A-Z, aga kui tegemist on stringidegs
         poed.sort((a,b) => a.nimi.localeCompare(b.nimi)); 

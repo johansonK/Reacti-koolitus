@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 import config from "../../data/config.json"
 
 
-function MaintainProducts() {
+function MaintainProducts() { 
 
 const [products, setProducts] = useState([]);
 const [dbProducts, setDbProducts] = useState([]);

@@ -6,7 +6,7 @@ function HaldaToode() {
 
   const [tooted, uuendaTooted] = useState(tootedFailist);
 
-  const kustuta = (index) => {
+  const kustuta = (index) => { 
     tootedFailist.splice(index, 1);
     uuendaTooted(tootedFailist.slice())
   }

@@ -12,7 +12,7 @@ function LisaSulearvuteid() {
     function addProduct(){
         setMessage("Arvuti lisatud");
      //  uuendaNaitaNuppu(false);
-
+ 
     const uusArvuti = {
       "mark": markRef.current.value,
       "mudel": mudelRef.current.value,

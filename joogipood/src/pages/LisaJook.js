@@ -8,7 +8,7 @@ function LisaJook() {
   const joogidRef = useRef();
 
 useEffect(() => {
-  fetch(config.joogidDbUrl)
+  fetch(config.joogidDbUrl) 
   .then(res => res.json())
   .then(json => setJoogid(json || []))  
 }, []);
