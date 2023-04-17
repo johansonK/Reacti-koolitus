@@ -1,26 +1,25 @@
 import Button from '@mui/material/Button';
-import React, {useState, useEffect} from 'react';
+import React, {useState,} from 'react';
 import {Link} from "react-router-dom";
 import "../../css/Cart.css";
+import ParcelMachine from '../../components/Cart/ParcelMachine';
+import Payment from '../../components/Cart/Payment';
+import { useContext } from 'react';
 //import cartFromFile from "../../data/cart.json"
+import {CartSumContext} from "../../Store/CartSumContext"
 
 function Cart() {
 
 const [cart, setCart] = useState(JSON.parse(localStorage.getItem("cart")) || [] );
 // votab kogu localStorage sisu ja lisab ostukorvi
-const [parcelMachines, setParcelMachines] = useState([]);
 
-useEffect(() => {
-  fetch("https://www.omniva.ee/locations.json")
-  .then(res => res.json())//res--> response, json l6pp peab olema sama
-  .then(json => setParcelMachines(json))// n2itab kuhu tulemus l2heb st json l2heb setParcelMachinesisse
-}, []);
-// eelnev on v6tmine, kui method ja body siis on saatmine
+const {setCartSum} = useContext(CartSumContext);
 
 
 const emptyCart = () => {
   setCart ([]);
   localStorage.setItem("cart", JSON.stringify([]));
+  setCartSum(0);
 }
 
 const decreaseQuantity = (index) => {
@@ -30,18 +29,21 @@ const decreaseQuantity = (index) => {
   }
   setCart(cart.slice());
   localStorage.setItem("cart", JSON.stringify(cart));
+  setCartSum(summary());
 }
 
 const increaseQuantity = (index) => {
   cart[index].quantity = cart[index].quantity +1;
   setCart(cart.slice());
   localStorage.setItem("cart", JSON.stringify(cart));
+  setCartSum(summary());
 }
 
 const removeFromCart = (index) => {
   cart.splice(index, 1);
   setCart(cart.slice());
   localStorage.setItem("cart", JSON.stringify(cart));
+  setCartSum(summary());
 }
 
 const summary = () => {
@@ -49,30 +51,11 @@ const summary = () => {
   cart.forEach(element => sum = sum + element.product.price * element.quantity);
   //element.product.price * element.quantity --- toote hind korrutatakse toote kogusega
   return sum.toFixed(2);// toFixed(2)---n2itab kahte koma kohta
+
 }
 
-const pay = () => {
-  const paymentUrl="https://igw-demo.every-pay.com/api/v4/payments/oneoff";
 
-  const paymentData = {
-    "api_username": "e36eb40f5ec87fa2",
-    "account_name": "EUR3D1",
-    "amount": summary(),
-    "order_reference": Math.random() * 9999999, //Math.random annab suvalise nr 
-    "nonce": "a9b7f7e79" + Math.random * 9999999 * new Date(),
-    "timestamp": new Date(), // annab praeguse kuup2eva
-    "customer_url": "https://webshop0101.web.app"
-    };
-
-  const paymentHeaders = {
-    "Authorization": "Basic ZTM2ZWI0MGY1ZWM4N2ZhMjo3YjkxYTNiOWUxYjc0NTI0YzJlOWZjMjgyZjhhYzhjZA==",
-    "Content-Type": "application/json"
-  };
-
-  fetch(paymentUrl, {"method": "POST", "body": JSON.stringify(paymentData), "headers": paymentHeaders})
-  .then(res => res.json()) 
-  .then(json => window.location.href = json.payment_link) 
-}
+  
 ///////Kodus v6ib panna json view plugina peale, on parem vaadata andmeid
   return (
     <div>
@@ -101,10 +84,9 @@ const pay = () => {
         </div>}
         {cart.length > 0 &&
         <div className="cart-bottom">
-          <div className="sum" >Subtotal: {summary()} €</div>
-          <select>{parcelMachines.filter(pm => pm.A0_NAME === "EE").map(pm => <option key={pm.NAME}>{pm.NAME}</option> )}</select>
-          {/* radio button && dpdsmart uus Select*/}
-          <button onClick={pay}>Pay</button>
+          <div className="sum" >Subtotal: {summary()} €</div>          
+          <ParcelMachine/>
+          <Payment sum={summary()}/>
         </div>
         }
     </div>

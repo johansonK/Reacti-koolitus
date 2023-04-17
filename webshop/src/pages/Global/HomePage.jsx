@@ -4,7 +4,11 @@ import {Link} from "react-router-dom";
 import Button from '@mui/material/Button';
 import { useEffect } from 'react';
 import config from "../../data/config.json"
-
+import SortButtons from '../../components/Home/SortButtons';
+import FilterButtons from '../../components/Home/FilterButtons';
+import { useContext } from 'react';
+import { CartSumContext } from '../../Store/CartSumContext';
+ 
 
 function HomePage() {
 
@@ -13,6 +17,9 @@ function HomePage() {
 
   const [dbProducts, setDbProducts] = useState([]);
 ///!!!!!!!, vaja see lingi l6pp muuta
+
+const {setCartSum} = useContext (CartSumContext);
+
  const [categories, setCategories] = useState([]);
   useEffect(() => {       
    
@@ -30,30 +37,9 @@ function HomePage() {
   // "" .starttsWith()  "".endsWith  tyhi s6na
   // [][0]  [].map()  [].    tyhi array
 
-  const sortAZ = () => {
-    products.sort((a,b) => a.name.localeCompare(b.name));
-    setProducts(products.slice());
-  }
-
-    const sortZA = () => {
-    products.sort((a,b) => b.name.localeCompare(a.name));
-    setProducts(products.slice());
-  }
   
-  const sortPriceAsc = () => {
-    products.sort((a,b) => a.price - b.price);
-    setProducts(products.slice());
-  }
 
-  const sortPriceDesc = () => {
-    products.sort((a,b) => b.price - a.price);
-    setProducts(products.slice());
-  }
-
-  const filterProducts = (categoryClicked) => {
-    const filteredProducts = dbProducts.filter((product) => product.category === categoryClicked);
-    setProducts(filteredProducts);
-}
+  
 
   const addProductToCart = (productClicked) => {
     const cart = JSON.parse(localStorage.getItem("cart"))||[];
@@ -75,28 +61,26 @@ function HomePage() {
         } else {
           cart.push({"product": productClicked, "quantity": 1});
         }
-    
-    localStorage.setItem("cart", JSON.stringify(cart));
-  }
+
+        let sum = 0;
+        cart.forEach(element => sum = sum + element.product.price * element.quantity);
+        setCartSum (sum.toFixed(2));  
+                  
+        localStorage.setItem("cart", JSON.stringify(cart));    
+      }
  
 //KODUS SHOPS OSA TEHA NAGU CATEGORIES!!!
 
   return (
     <div> 
-      <Button onClick={sortAZ}>Sort A-Z</Button>
-      <Button onClick={sortZA}>Sort Z-A</Button>
-      <Button onClick={sortPriceAsc}>Sort by price low to high</Button>
-      <Button onClick={sortPriceDesc}>Sort by price high to low</Button>
-      <br />
+      <SortButtons products={products} setProducts={setProducts}/>
       <div>{products.length}pcs</div>
-      {/*<button onClick={() => filterProducts ("camping")}>Camping</button>
-      <button onClick={() => filterProducts ("tent")}>Tent</button>
-      <button onClick={() => filterProducts ("belts")}>Belts</button>
-      <button onClick={() => filterProducts ("jeans")}>Jeans</button>*/}
-      {
-        categories.map(category => <button onClick={() => filterProducts (category.name)}>{category.name}</button>)
-      }
-
+      
+     <FilterButtons
+      dbProducts={dbProducts}
+      setProducts={setProducts}
+      categories={categories}
+     />
       {products.filter(element => element.active === true).map(element =>  
         <div key={element.id}>
           <Link to={"/single-product/" + element.id}>
