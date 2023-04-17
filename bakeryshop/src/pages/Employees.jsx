@@ -1,12 +1,13 @@
 import { Button, Table } from "react-bootstrap";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRef } from "react";
-import employeesFromFile from "../data/employees.json";
+import config from "../data/config.json";
 import validator from 'validator';
 
 function Employees() {
 
-const [users, setUsers] = useState(employeesFromFile) 
+const [users, setUsers] = useState([]);
+const [dbUsers, setDbUsers] = useState([]); 
 const [message, setMessage] = useState("Add an employee!")
 const IDRef = useRef();
 const firstNameRef = useRef();
@@ -15,6 +16,13 @@ const emailRef = useRef();
 const avatarRef = useRef();
 
 
+useEffect(() => {     
+  fetch(config.employeesDbUrl)
+    .then (response => response.json())   
+    .then (json => {                      
+      setDbUsers(json || []); 
+    })   
+}, []);
 
   // TODO: Load data from backend service
   //+ lastNameRef
@@ -33,7 +41,7 @@ const avatarRef = useRef();
       setMessage("Avatar is required")
     } else {
       setMessage("Employee saved!");
-      employeesFromFile.push
+      dbUsers.push
     ({
       "id": IDRef.current.value,
       "first_name": firstNameRef.current.value,
@@ -44,11 +52,13 @@ const avatarRef = useRef();
     // TODO: Add validations
     // TODO: Add an employee to the table
   }
+  fetch(config.employeesDbUrl, {"method": "PUT", "body": JSON.stringify(dbUsers)});
 }
 
   const deleteEmployee = (index) => {
-    employeesFromFile.splice(index,1);
-    setUsers(employeesFromFile.slice())
+    dbUsers.splice(index,1);
+    //setDbUsers(employeesFromFile.slice())
+    fetch(config.employeesDbUrl, {"method": "PUT", "body": JSON.stringify(dbUsers)});
     // TODO: Delete an employee from the table
   }
   
@@ -84,11 +94,9 @@ const avatarRef = useRef();
           <td><input ref={avatarRef} type="file" accept="image/*" className="form-control"/></td>
           <td><Button onClick={addEmployee} type="submit" variant="success">Add</Button></td>
         </tr>
-        </tbody>
-        <div>{message}</div>
-
-              
+        </tbody>                    
       </Table>
+      <div>{message}</div>
     </div>
 
   </div>)
