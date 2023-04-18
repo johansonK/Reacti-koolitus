@@ -13,7 +13,7 @@ function SortButtons({products, setProducts}) {
         setProducts(products.slice());
     }
       
-      const sortPriceAsc = () => {
+      const sortPriceAsc = () => { 
         products.sort((a,b) => a.price - b.price);
         setProducts(products.slice());
     }

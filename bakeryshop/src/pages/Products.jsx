@@ -30,26 +30,31 @@ function Products() {
     setProducts(products.slice());
   }
 
+  const sortPriceAsc = () => {
+    products.sort((a,b) => a.price - b.price);
+    setProducts(products.slice());
+}
+
   return (<div>
     <div className="container">
       <h2 className="mb-4">Products</h2>
+      <Button onClick={sortPriceAsc}>Sort by price low to high</Button>
       <Table className="table table-hover table-bordered">
         <thead>
-        <tr>
-          <th scope="col">Product</th>
+        <tr> 
+          <th scope="col" className="firstCol" >Product</th>
           <th scope="col">Price (€)</th>
           <th scope="col">Quantity (pcs)</th>
           <th scope="col">Store</th>
         </tr>
         </thead>
-        <tbody>
-        {/* TODO: Order the products by price */}
+        <tbody>        
         {products.map(product => 
             <tr key={product.name + product.price}>
               <td>{product.name}</td>
               <td>{product.price}</td>
               {/*  TODO: Display the quantity in red if it is lower than 3 */}
-              <td>{product.quantity}</td> 
+              <td className={product.quantity < 3 ? "red" : undefined}>{product.quantity}</td> 
               <td>{product.store}</td>
             </tr>
           )}
