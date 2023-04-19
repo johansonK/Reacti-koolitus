@@ -4,6 +4,9 @@ import { useRef } from "react";
 import config from "../data/config.json";
 import validator from 'validator';
 
+
+
+
 function Employees() {
 
 const [users, setUsers] = useState([]);
@@ -15,12 +18,46 @@ const lastNameRef = useRef();
 const emailRef = useRef();
 const avatarRef = useRef();
 
+const [errors, setErrors] = useState({
+  firstName: "",
+  lastName: "",
+  email: "",
+  avatar: "",
+});
+
+const handleSubmit = (event) => {
+  event.preventDefault();
+
+  const firstNameError = validateFirstName();
+  const lastNameError = validateLastName();
+  const emailError = validateEmail();
+  const avatarError = validateAvatar();
+
+  setErrors({
+    firstName: firstNameError,
+    lastName: lastNameError,
+    email: emailError,
+    avatar: avatarError,
+  });
+
+  // ...
+};
+
+const validateFirstName = () => {
+  if (!firstName) {
+    return "First name is required";
+  }
+
+  return "";
+};
+
 
 useEffect(() => {     
   fetch(config.employeesDbUrl)
     .then (response => response.json())   
     .then (json => {                      
-      setDbUsers(json || []); 
+      setUsers(json || []); 
+      setDbUsers(json || [])
     })   
 }, []);
 
@@ -57,9 +94,9 @@ useEffect(() => {
 
   const deleteEmployee = (index) => {
     dbUsers.splice(index,1);
-    //setDbUsers(employeesFromFile.slice())
-    fetch(config.employeesDbUrl, {"method": "PUT", "body": JSON.stringify(dbUsers)});
-    // TODO: Delete an employee from the table
+    setDbUsers(dbUsers.slice())
+        fetch(config.employeesDbUrl, {"method": "PUT", "body": JSON.stringify(users)});
+    
   }
   
   return (<div>

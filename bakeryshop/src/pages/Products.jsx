@@ -42,7 +42,7 @@ function Products() {
       <Table className="table table-hover table-bordered">
         <thead>
         <tr> 
-          <th scope="col" className="firstCol" >Product</th>
+          <th scope="col" >Product</th>
           <th scope="col">Price (€)</th>
           <th scope="col">Quantity (pcs)</th>
           <th scope="col">Store</th>
@@ -51,15 +51,14 @@ function Products() {
         <tbody>        
         {products.map(product => 
             <tr key={product.name + product.price}>
-              <td>{product.name}</td>
+              <td className="firstCol">{product.name}</td>
               <td>{product.price}</td>
-              {/*  TODO: Display the quantity in red if it is lower than 3 */}
               <td className={product.quantity < 3 ? "red" : undefined}>{product.quantity}</td> 
               <td>{product.store}</td>
             </tr>
           )}
         <tr className="input-row">
-          <td><input type="text" ref={nameRef} placeholder="Product" className="form-control" /></td>
+          <td > <input  type="text" ref={nameRef} placeholder="Product" className="form-control" /> </td>
           <td><input type="text" ref={priceRef} placeholder="Price" className="form-control" /></td>
           <td><input type="text" ref={quantityRef} placeholder="Quantity" className="form-control" /></td>
           <td><input type="text" ref={storeRef} placeholder="Store" className="form-control" /></td>
