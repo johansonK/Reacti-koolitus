@@ -6,7 +6,7 @@ import ParcelMachine from '../../components/Cart/ParcelMachine';
 import Payment from '../../components/Cart/Payment';
 import { useContext } from 'react';
 //import cartFromFile from "../../data/cart.json"
-import {CartSumContext} from "../../Store/CartSumContext"
+import {CartSumContext} from "../../store/CartSumContext"
 
 function Cart() {
 

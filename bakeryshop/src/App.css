@@ -4,3 +4,7 @@
 .firstCol {
     font-weight: bold;
 }
+
+td:first-child {
+    font-weight: bold
+}

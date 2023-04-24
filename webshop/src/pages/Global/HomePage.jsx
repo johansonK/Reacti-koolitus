@@ -7,8 +7,8 @@ import config from "../../data/config.json"
 import SortButtons from '../../components/Home/SortButtons';
 import FilterButtons from '../../components/Home/FilterButtons';
 import { useContext } from 'react';
-import { CartSumContext } from '../../Store/CartSumContext';
- 
+import { CartSumContext } from '../../store/CartSumContext';
+import styles from "../../css/HomePage.module.css"
 
 function HomePage() {
 
@@ -81,8 +81,9 @@ const {setCartSum} = useContext (CartSumContext);
       setProducts={setProducts}
       categories={categories}
      />
+      <div className={styles["products-wrapper"]}>
       {products.filter(element => element.active === true).map(element =>  
-        <div key={element.id}>
+        <div key={element.id} className={styles["product"]}>
           <Link to={"/single-product/" + element.id}>
           <img src={element.image} alt="" />
           <div>{element.name}</div>
@@ -90,6 +91,7 @@ const {setCartSum} = useContext (CartSumContext);
           </Link>
           <Button variant="contained" onClick={() => addProductToCart(element)}>Add to cart</Button>
           </div>)}
+      </div>
     </div>
   )
 }

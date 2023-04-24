@@ -30,15 +30,11 @@ function Products() {
     setProducts(products.slice());
   }
 
-  const sortPriceAsc = () => {
-    products.sort((a,b) => a.price - b.price);
-    setProducts(products.slice());
-}
+
 
   return (<div>
     <div className="container">
-      <h2 className="mb-4">Products</h2>
-      <Button onClick={sortPriceAsc}>Sort by price low to high</Button>
+      <h2 className="mb-4">Products</h2>      
       <Table className="table table-hover table-bordered">
         <thead>
         <tr> 
@@ -49,7 +45,7 @@ function Products() {
         </tr>
         </thead>
         <tbody>        
-        {products.map(product => 
+        {products.sort((a,b) => a.price - b.price).map(product => 
             <tr key={product.name + product.price}>
               <td className="firstCol">{product.name}</td>
               <td>{product.price}</td>
@@ -62,7 +58,7 @@ function Products() {
           <td><input type="text" ref={priceRef} placeholder="Price" className="form-control" /></td>
           <td><input type="text" ref={quantityRef} placeholder="Quantity" className="form-control" /></td>
           <td><input type="text" ref={storeRef} placeholder="Store" className="form-control" /></td>
-          <td><Button variant="success" type="submit" onClick={() => addProduct()} >Add</Button></td>
+          <td><Button variant="success" type="submit" onClick={addProduct} >Add</Button></td>
         </tr>
         </tbody>
       </Table>

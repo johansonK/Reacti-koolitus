@@ -1,8 +1,7 @@
 import { Button, Table } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import { useRef } from "react";
-import config from "../data/config.json";
-import validator from 'validator';
+
 
 
 
@@ -10,92 +9,52 @@ import validator from 'validator';
 function Employees() {
 
 const [users, setUsers] = useState([]);
-const [dbUsers, setDbUsers] = useState([]); 
 const [message, setMessage] = useState("Add an employee!")
-const IDRef = useRef();
+const idRef = useRef();
 const firstNameRef = useRef();
 const lastNameRef = useRef();
 const emailRef = useRef();
 const avatarRef = useRef();
-
-const [errors, setErrors] = useState({
-  firstName: "",
-  lastName: "",
-  email: "",
-  avatar: "",
-});
-
-const handleSubmit = (event) => {
-  event.preventDefault();
-
-  const firstNameError = validateFirstName();
-  const lastNameError = validateLastName();
-  const emailError = validateEmail();
-  const avatarError = validateAvatar();
-
-  setErrors({
-    firstName: firstNameError,
-    lastName: lastNameError,
-    email: emailError,
-    avatar: avatarError,
-  });
-
-  // ...
-};
-
-const validateFirstName = () => {
-  if (!firstName) {
-    return "First name is required";
-  }
-
-  return "";
-};
-
-
-useEffect(() => {     
-  fetch(config.employeesDbUrl)
-    .then (response => response.json())   
-    .then (json => {                      
-      setUsers(json || []); 
-      setDbUsers(json || [])
-    })   
-}, []);
-
-  // TODO: Load data from backend service
-  //+ lastNameRef
+  
+  useEffect(() => {
+    fetch("https://reqres.in/api/users")
+      .then((response) => response.json())
+      .then((data) => setUsers(data.data))
+      .catch((error) => console.error(error));
+  }, []);
 
   const addEmployee = () => {
-    if (Number(IDRef.current.value) === "") {
-      setMessage("ID is required!");      
+    if (idRef.current.value === "") {
+      //setMessage;
+      return
     } 
-    if ((firstNameRef + "" + lastNameRef) === "") {
-      setMessage("Full name is required!")
-    }
-    if (!validator.isEmail(emailRef.current.value)) {
-      setMessage("Invalid email format")
-    }
-    if (avatarRef.current.value === "") {
-      setMessage("Avatar is required")
-    } else {
-      setMessage("Employee saved!");
-      dbUsers.push
+    if (/^[0-9]*$/.test(idRef.current.value) === false) {
+      // setMessage()
+     return;
+   }
+   
+   if (firstNameRef.current.value === "") {
+    // setMessage()
+   return;
+  }
+  if (lastNameRef.current.value === "") {
+    // setMessage()
+   return;
+  }
+
+    users.push
     ({
-      "id": IDRef.current.value,
+      "id": idRef.current.value,
       "first_name": firstNameRef.current.value,
       "last_name": lastNameRef.current.value,
       "email": emailRef.current.value,
       "avatar": avatarRef.current.value}
       ) 
-    // TODO: Add validations
-    // TODO: Add an employee to the table
   }
-  fetch(config.employeesDbUrl, {"method": "PUT", "body": JSON.stringify(dbUsers)});
-}
 
   const deleteEmployee = (index) => {
-    dbUsers.splice(index,1);
-    setDbUsers(dbUsers.slice())
-        fetch(config.employeesDbUrl, {"method": "PUT", "body": JSON.stringify(users)});
+    users.splice(index,1);
+    setUsers(users.slice())
     
   }
   
@@ -125,11 +84,14 @@ useEffect(() => {
         )}
        
         <tr className="input-row">
-          <td><input ref={IDRef} type="number" placeholder="ID" className="form-control"/></td>
-          <td><input ref={node => {firstNameRef.current=node; lastNameRef.current = node}} type="text" placeholder="Name" className="form-control"/></td>
-          <td><input ref={emailRef}type="text" placeholder="Email" className="form-control"/></td>
-          <td><input ref={avatarRef} type="file" accept="image/*" className="form-control"/></td>
-          <td><Button onClick={addEmployee} type="submit" variant="success">Add</Button></td>
+          <td><input type="number" ref={idRef} placeholder="ID" className="form-control"/></td>
+          <td>
+            <input type="text" ref={firstNameRef} placeholder="Fisrt Name" className="form-control"/>
+            <input type="text" ref={lastNameRef} placeholder="Last Name" className="form-control"/>
+          </td>
+          <td><input type="text" ref={emailRef} placeholder="Email" className="form-control"/></td>
+          <td><input type="file" ref={avatarRef} accept="image/*" className="form-control"/></td>
+          <td><Button type="submit" variant="success" onClick={addEmployee} >Add</Button></td>
         </tr>
         </tbody>                    
       </Table>

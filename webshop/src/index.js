@@ -7,8 +7,8 @@ import 'leaflet/dist/leaflet.css';
 import './i18n';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
-import { CartSumContextProvider } from './Store/CartSumContext';
-import { AuthContextProvider } from './Store/AuthContext';
+import { CartSumContextProvider } from './store/CartSumContext';
+import { AuthContextProvider } from './store/AuthContext';
  
 
 
