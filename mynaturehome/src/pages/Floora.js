@@ -2,7 +2,13 @@ import React from 'react'
 
 function Floora() {
   return (
-    <div>Floora</div>
+    <div>      
+      <article> 
+        <h1>Floora</h1>
+          <p class="lead"> Eesti looduse teemaline leehekylg</p>
+          <p>Sisusisisisisi</p>
+      </article>
+    </div>
   )
 }
 

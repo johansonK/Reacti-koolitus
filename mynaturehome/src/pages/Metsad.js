@@ -3,23 +3,12 @@ import React from 'react'
 
 function Metsad() {
   return (
-    <div id="leaves">
-      <i></i>
-      <i></i>
-      <i></i>
-      <i></i>
-      <i></i>
-      <i></i>
-      <i></i>
-      <i></i>
-      <i></i>
-      <i></i>
-      <i></i>
-      <i></i>
-      <i></i>
-      <i></i>
-      <i></i>
-
+    <div>      
+      <article> 
+        <h1>Metsad</h1>
+          <p class="lead"> Eesti looduse teemaline leehekylg</p>
+          <p>Sisusisisisisi</p>
+      </article>
     </div>
   )
 }

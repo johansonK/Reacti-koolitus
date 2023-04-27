@@ -10,22 +10,20 @@ import Fauna from "./pages/Fauna"
 
 function App() {
   return (
-    <div className="App" >
-      <Link to="/">
-      <button className="leaf-1" >Avaleht</button> <br />
-      </Link>
-      <Link to="/metsad">
-      <button className="leaf-1" >Metsad</button> <br />
-      </Link>
-      <Link to="/veekogud">
-      <button className='leaf-1'>Veekogud</button> <br />
-      </Link>
-      <Link to="/floora">
-      <button className="leaf-1">Floora</button> <br />
-      </Link>
-      <Link to="/fauna">
-      <button className="leaf-1">Fauna</button> <br />
-      </Link>
+    <div className="app" >
+
+    <nav className="sidebar">
+        <ul>
+          <li><a href="/">Avaleht</a></li>
+          <li><a href="/metsad">Metsad</a></li>
+          <li><a href="/veekogud">Veekogud</a></li>
+          <li><a href="/floora">Floora</a></li>
+          <li><a href="/fauna">Fauna</a></li>
+        </ul>
+    </nav>
+    
+    
+      
       <Routes>
         <Route path="" element= { <Avaleht /> } />
         <Route path="metsad" element={ <Metsad/> }/>
