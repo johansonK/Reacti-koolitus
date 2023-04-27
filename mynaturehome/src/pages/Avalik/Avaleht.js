@@ -1,11 +1,11 @@
 import React from 'react'
-import '../css/Veekogud.module.css'
+import '../../css/Avaleht.module.css'
 
-function Veekogud() {
+function Avaleht() {
   return (
-    <div>      
+    <div>
       <article> 
-        <h1>Veekogud</h1>
+        <h1>Avaleht</h1>
           <p class="lead"> Eesti looduse teemaline leehekylg</p>
           <p>Sisusisisisisi</p>
       </article>
@@ -13,4 +13,4 @@ function Veekogud() {
   )
 }
 
-export default Veekogud
+export default Avaleht

@@ -7,7 +7,8 @@ import { useTranslation } from 'react-i18next';
 import { useContext } from 'react';
 import { CartSumContext } from '../store/CartSumContext';
 import { AuthContext } from '../store/AuthContext'; 
- 
+
+
 function NavigationBar() {
 
     const { t, i18n } = useTranslation();
