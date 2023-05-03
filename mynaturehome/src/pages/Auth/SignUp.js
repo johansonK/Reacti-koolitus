@@ -7,7 +7,7 @@ import {AuthContext} from "../../store/AuthContext";
 function Signup() {
   const emailRef = useRef();
   const passwordRef = useRef();
-  const url = "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBMn5BJmxaqaG20gtOVRn6OW5t40RlRQKE";
+  const url = "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyA4_VEzDgXrYixO_Imb5JiUESIOh4d1vxY";
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
   const {setLoggedIn} = useContext(AuthContext);

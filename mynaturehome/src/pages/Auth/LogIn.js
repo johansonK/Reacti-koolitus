@@ -8,7 +8,7 @@ function Login() {
 
     const emailRef = useRef();
     const passwordRef = useRef();
-    const url = "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBMn5BJmxaqaG20gtOVRn6OW5t40RlRQKE";
+    const url = "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyA4_VEzDgXrYixO_Imb5JiUESIOh4d1vxY";
     const [message, setMessage] = useState("");
     const navigate = useNavigate();
     const {setLoggedIn} = useContext(AuthContext);
