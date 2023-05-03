@@ -11,11 +11,12 @@ import HaldaFloora from "./pages/Admin/HaldaFloora"
 import HaldaMetsad from "./pages/Admin/HaldaMetsad"
 import HaldaVeekogud from "./pages/Admin/HaldaVeekogud"
 import NavigationBar from "./components/NavigationBar"
-import Login from "./pages/Auth/LogIn";
-import Signup from "./pages/Auth/SignUp";
+import LogIn from "./pages/Auth/LogIn";
+import SignUp from './pages/Auth/SignUp';
 import NotFound from "./pages/Avalik/NotFound";
 import { useContext } from 'react';
 import { AuthContext } from './store/AuthContext';
+
 
 
 
@@ -48,8 +49,8 @@ function App() {
         {loggedIn === false && <Route path="halda-floora" element={<Navigate to="/login"/>}/>}
         {loggedIn === false && <Route path="halda-metsad" element={<Navigate to="/login"/>}/>}
         {loggedIn === false && <Route path="halda-veekogud" element={<Navigate to="/login"/>}/>}
-        <Route path="logisisse" element={ <Login/>} />
-        <Route path="registreeru" element={ <Signup/>} />
+        <Route path="logisisse" element={ <LogIn/>} />
+        <Route path="registreeru" element={ <SignUp/>} />
         <Route path="*" element={ <NotFound /> } />
       </Routes>
       </article>
