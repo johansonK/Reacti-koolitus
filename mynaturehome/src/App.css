@@ -180,7 +180,9 @@ picture {
     height: 400px;
     background-position: center;
  }
- 
+ .text-center {
+	text-align: center;
+ }
  
  .four_zero_four_bg h1{
  font-size:80px;
