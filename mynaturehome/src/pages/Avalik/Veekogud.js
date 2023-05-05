@@ -1,16 +1,21 @@
-import React from 'react'
-import '../../css/Veekogud.module.css'
+import React, { useEffect, useState } from 'react';
+import config from "../../data/config.json";
 
 function Veekogud() {
+  const [sisu, setSisu] = useState('');
+
+  useEffect(() => {
+    fetch(config.veekogudDbUrl)
+      .then(response => response.json())
+      .then(json => setSisu(json.sisu || ''));
+  }, []);
+
   return (
-    <div className="taust">      
-      <article> 
-        <h1>Veekogud</h1>
-          <p class="lead"> Eesti looduse teemaline leehekylg</p>
-          <p>Sisusisisisisi</p>
-      </article>
+    <div>
+      <h1>Veekogud</h1>
+      <p>{sisu}</p>
     </div>
-  )
+  );
 }
 
-export default Veekogud
+export default Veekogud;

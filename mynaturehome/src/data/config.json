@@ -1,7 +1,7 @@
 {
-    "avaleht": "https://mynaturehome-dc84a-default-rtdb.europe-west1.firebasedatabase.app/avaleht.json",
-    "fauna": "https://mynaturehome-dc84a-default-rtdb.europe-west1.firebasedatabase.app/fauna.json",
-    "floora": "https://mynaturehome-dc84a-default-rtdb.europe-west1.firebasedatabase.app/floora.json",
-    "metsad": "https://mynaturehome-dc84a-default-rtdb.europe-west1.firebasedatabase.app/metsad.json",
-    "veekogud": "https://mynaturehome-dc84a-default-rtdb.europe-west1.firebasedatabase.app/veekogud.json"
+    "avalehtDbUrl": "https://mynaturehome-dc84a-default-rtdb.europe-west1.firebasedatabase.app/avaleht.json",
+    "faunaDbUrl": "https://mynaturehome-dc84a-default-rtdb.europe-west1.firebasedatabase.app/fauna.json",
+    "flooraDbUrl": "https://mynaturehome-dc84a-default-rtdb.europe-west1.firebasedatabase.app/floora.json",
+    "metsadDbUrl": "https://mynaturehome-dc84a-default-rtdb.europe-west1.firebasedatabase.app/metsad.json",
+    "veekogudDbUrl": "https://mynaturehome-dc84a-default-rtdb.europe-west1.firebasedatabase.app/veekogud.json"
 }

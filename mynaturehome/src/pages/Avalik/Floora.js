@@ -1,15 +1,21 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
+import config from "../../data/config.json";
 
 function Floora() {
+  const [sisu, setSisu] = useState('');
+
+  useEffect(() => {
+    fetch(config.flooraDbUrl)
+      .then(response => response.json())
+      .then(json => setSisu(json.sisu || ''));
+  }, []);
+
   return (
-    <div>      
-      <article> 
-        <h1>Floora</h1>
-          <p class="lead"> Eesti looduse teemaline leehekylg</p>
-          <p>Sisusisisisisi</p>
-      </article>
+    <div>
+      <h1>Floora</h1>
+      <p>{sisu}</p>
     </div>
-  )
+  );
 }
 
-export default Floora
+export default Floora;

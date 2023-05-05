@@ -3,49 +3,32 @@ import config from "../../data/config.json";
 import { useNavigate } from 'react-router-dom';
 
 function HaldaAvaleht() {
-  const [dbAvaleht, setDbAvaleht] = useState(null);
-  const sisuRef = useRef(null);
-  const navigate = useNavigate();
+  const [sisu, setSisu] = useState('');
 
   useEffect(() => {
     fetch(config.avalehtDbUrl)
       .then(response => response.json())
-      .then(json => setDbAvaleht(json))
-      .catch(error => console.error(error));
+      .then(data => setSisu(data.sisu || ''));
   }, []);
 
-  const handleSubmit = () => {
-    const updatedDbAvaleht = {
-      sisu: sisuRef.current.value
-    };
+  const navigate = useNavigate();
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
     fetch(config.avalehtDbUrl, {
       method: "PUT",
-      body: JSON.stringify(updatedDbAvaleht),
-      headers: {
-        "Content-Type": "application/json"
-      }
-    })
-      .then(response => response.json())
-      .then(json => {
-        setDbAvaleht(json);
-        navigate("/admin/halda-avaleht");
-      })
-      .catch(error => console.error(error));
+      body: JSON.stringify({ sisu })
+    }).then(() => {
+      navigate('/');
+    });
   };
 
-  if (dbAvaleht === null) {
-    return <p>Loading...</p>;
-  }
-
   return (
-    <div>
-      <h1>Halda Avaleht</h1>
-      <input type="text" defaultValue={dbAvaleht.sisu} ref={sisuRef} />
-      <button onClick={handleSubmit}>Salvesta</button>
-    </div>
- 
-
+    <form onSubmit={handleSubmit}>
+      <label htmlFor=""><h1>Muuda avalehte</h1></label>
+      <input type="text" value={sisu} onChange={(e) => setSisu(e.target.value)} />
+      <button type="submit">Lisa sisu</button>
+    </form>
   );
 }
 

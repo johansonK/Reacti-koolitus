@@ -201,3 +201,21 @@ picture {
 	.contant_box_404{ margin-top:-50px;}
 
 
+.pohitekst {
+	font-size: 20px;
+	background-color: aliceblue;
+}
+
+.lynk  {
+		width: 100%;
+		height: 100%; /* adjust the minimum height as needed */
+		font-size: 25px;
+		line-height: 1.5;
+		padding: 10px;
+		border: 1px solid #ccc;
+		column-span: all;
+	  }
+.tekst {
+	font-size: 20px;
+}
+	  
