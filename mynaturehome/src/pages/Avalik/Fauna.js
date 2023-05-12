@@ -11,21 +11,21 @@ function Fauna() {
   useEffect(() => {
     fetch(config.faunaDbUrl)
       .then(response => response.json())
-      .then(data => {
-        setSisu(data.sisu || '');
-        setSisu2(data.sisu2 || '');
-        setSisu3(data.sisu3 || '');
-        setSisu4(data.sisu4 || '');
-        setSisu5(data.sisu5 || '');
+      .then(json => {
+        setSisu(json.sisu || '');
+        setSisu2(json.sisu2 || '');
+        setSisu3(json.sisu3 || '');
+        setSisu4(json.sisu4 || '');
+        setSisu5(json.sisu5 || '');
       })
   }, []);
 
   return (
-    <div>
+    <div className="pohitekst">
       <h1>Fauna</h1>
-      <p>{sisu}</p>
+      <h2>{sisu}</h2>
       <p>{sisu2}</p>
-      <p>{sisu3}</p>
+      <h3>{sisu3}</h3>
       <p>{sisu4}</p>
       <p>{sisu5}</p>
 
@@ -34,3 +34,5 @@ function Fauna() {
 }
 
 export default Fauna;
+
+

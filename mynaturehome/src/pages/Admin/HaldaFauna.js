@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import config from "../../data/config.json";
 import { useNavigate } from 'react-router-dom';
 
@@ -26,24 +26,22 @@ function HaldaFauna() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const data = {sisu, sisu2, sisu3, sisu4, sisu5}
-    fetch(config.faunaDbUrl, {
+        fetch(config.faunaDbUrl, {
       method: "PUT",
-      body: JSON.stringify({ data })
+      body: JSON.stringify({ sisu, sisu2, sisu3, sisu4, sisu5 })
     }).then(() => {
-      navigate('/fauna');
+      navigate('/fauna');      
     });
    };
 
   return (
     <form onSubmit={handleSubmit}>
       <label htmlFor=""><h1>Muuda fauna</h1></label>
-
-      <textarea name="lynk" className="tekst" cols="100" rows="10" value={sisu} onChange={(e) => setSisu(e.target.value)} ></textarea>
-      <textarea name="lynk" className="tekst" cols="100" rows="10" value={sisu2} onChange={(e) => setSisu2(e.target.value)} ></textarea>
-      <textarea name="lynk" className="tekst" cols="100" rows="10" value={sisu3} onChange={(e) => setSisu3(e.target.value)} ></textarea>
-      <textarea name="lynk" className="tekst" cols="100" rows="10" value={sisu4} onChange={(e) => setSisu4(e.target.value)} ></textarea>
-      <textarea name="lynk" className="tekst" cols="100" rows="10" value={sisu5} onChange={(e) => setSisu5(e.target.value)} ></textarea>
+      <textarea name="lynk" className="tekst" cols="100" rows="3" value={sisu} onChange={(e) => setSisu(e.target.value)} ></textarea>
+      <textarea name="lynk" className="tekst" cols="100" rows="3" value={sisu2} onChange={(e) => setSisu2(e.target.value)} ></textarea>
+      <textarea name="lynk" className="tekst" cols="100" rows="3" value={sisu3} onChange={(e) => setSisu3(e.target.value)} ></textarea>
+      <textarea name="lynk" className="tekst" cols="100" rows="3" value={sisu4} onChange={(e) => setSisu4(e.target.value)} ></textarea>
+      <textarea name="lynk" className="tekst" cols="100" rows="3" value={sisu5} onChange={(e) => setSisu5(e.target.value)} ></textarea>
       <button type="submit">Lisa sisu</button>
     </form>
   );
